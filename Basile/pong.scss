@@ -12,12 +12,18 @@ body {
     color: white;
 
     .menu {
-        background-color: blue;
-        
-        opacity: 0.6;
+        background-color: white;
+        text-align: center;
+        // opacity: 0.6;
         width: 61vw;
         min-height: 70vh;
         margin-top: 8%;
         margin-left: 10%;
+    }
+
+    #pongCanvas {
+        padding-top: 5%;
+        width: 80%;
+        height: auto;
     }
 }
