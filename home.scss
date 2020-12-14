@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("assets/retro-background.png");
+    background-color: black;
+    background-size: 100vw 100vh;
+
+    .menu {
+        background-color: blue;
+        
+        opacity: 0.6;
+        width: 61vw;
+        min-height: 70vh;
+        margin-top: 8%;
+        margin-left: 10%;
+
+        .menu-select {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            background-color: cornflowerblue;
+            padding: 15px 15px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            
+
+            .menu-title {
+                background-color: cornsilk;
+                text-align: center;
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+
+            .games {
+                background-color: darkseagreen;
+                
+            }
+
+            .menu-Button {
+                background-color: gold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-left: 30px;
+                
+            }
+        }
+    }
+    
+}
