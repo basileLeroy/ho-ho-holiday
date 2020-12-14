@@ -7,11 +7,11 @@ body {
   background-image: url("assets/retro-background.png");
   background-color: black;
   background-size: 100vw 100vh;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
 }
 
 body .menu {
-  background-color: blue;
-  opacity: 0.6;
   width: 61vw;
   min-height: 70vh;
   margin-top: 8%;
@@ -29,7 +29,6 @@ body .menu .menu-select {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: cornflowerblue;
   padding: 15px 15px;
   width: 50%;
   margin-left: auto;
@@ -37,20 +36,25 @@ body .menu .menu-select {
 }
 
 body .menu .menu-select .menu-title {
-  background-color: cornsilk;
   text-align: center;
   font-size: 40px;
   margin-bottom: 10px;
 }
 
 body .menu .menu-select .games {
-  background-color: darkseagreen;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-body .menu .menu-select .menu-Button {
-  background-color: gold;
+body .menu .menu-select .games .menu-Button {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 30px;
+  color: white;
 }
 /*# sourceMappingURL=home.css.map */
