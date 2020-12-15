@@ -1,22 +1,27 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", ()=>{
-
-const dino = document.querySelector("#dino");
-let isJumping = false;
-let gravity = 0.9;
+   // TODO create game canvas
+   const canvas = document.querySelector("canvas");
+   const dino = document.querySelector(".dino");
+   const grid = document.querySelector(".grid");
+   const alert = document.getElementById("alert");
+   let isJumping = false;
+   let position = 0;
+   let gravity = 0.9;
+   let isGameOver = false;
 
    function control (event) {
       if (event.keyCode === 32){
-         console.log('pressed');
+         // console.log('pressed');
          if (!isJumping){
             isJumping = true;
             jump();
          }
       }
    }
-   document.addEventListener("keyup", control)
-   let position = 0;
+
+   document.addEventListener("keyup", control);
 
    function jump (){
       let count = 0;
@@ -24,7 +29,7 @@ let gravity = 0.9;
          // move down
          if (count === 15){
             clearInterval(timerID);
-            console.log ('down');
+            // console.log ('down');
             let downTimerId = setInterval(function(){
                if (count === 0) {
                   clearInterval(downTimerId);
@@ -32,12 +37,12 @@ let gravity = 0.9;
                }
                position -= 5;
                count --;
-               position = position *gravity;
+               position = position * gravity;
                dino.style.bottom = position +'px';      
 
             },20);
          }
-         // move up
+         // move up 
          console.log('up');
          count ++;
          position += 30;
@@ -47,7 +52,33 @@ let gravity = 0.9;
    }
    function generateObstacles () {
       let obstaclePosition = 1000;
+      let randomTime = Math.random()*4000;
       const obstacle = document.createElement('div');
-      obstacle.classList.add("obstacle")
+
+      if (!isGameOver) {
+         obstacle.classList.add("obstacle");
+      }
+      grid.appendChild(obstacle);
+      obstacle.style.left = obstaclePosition + 'px';
+
+      let timerId = setInterval(function(){
+         if (obstaclePosition > 0 && obstaclePosition < 60 && position < 60){
+            clearInterval(timerId);
+            alert.innerHTML = 'Game over';
+            isGameOver = true;
+            // while (grid.firstChild) {
+            //    grid.removeChild(grid.lastChild);
+            // }
+         }
+         obstaclePosition -= 10;
+         obstacle.style.left = obstaclePosition + 'px';
+      }, 20)
+
+      if (!isGameOver){
+         setTimeout(generateObstacles, randomTime);
+      }
    }
+
+generateObstacles();
 }) 
+
