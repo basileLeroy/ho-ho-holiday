@@ -1,3 +1,4 @@
+
 class Vector {
     constructor(x = 2, y = 12) {
 
@@ -35,6 +36,15 @@ class Ball extends Rectangle {
     }
 }
 
+// Creating the player (shown as a rectangle bar)
+class Player extends Rectangle {
+    constructor() {
+        super(7, 40);
+        this.score = 0;
+
+    }
+}
+
 // Making pong into a class
 class Pong {
     constructor(canvas) {
@@ -48,6 +58,15 @@ class Pong {
 
         this.ball.velocity.x = 100;
         this.ball.velocity.y = 100;
+
+        // Adding players to the game:
+        this.Players = [
+            new Player,
+            new Player,
+        ];
+
+        this.Players[0].position.x = 20;
+        this.Players[1].position.x = this._canvas.width - 20;
 
         let lastTime;
         const callbackTime = (milliseconds) => {
@@ -67,6 +86,9 @@ class Pong {
     
         // Telling drawRectangle to draw the ball here:
         this.drawRectangle(this.ball)
+
+        // Drawing the players:
+        this.Players.forEach(player => this.drawRectangle(player));
     }
 
     drawRectangle(Rectangle) {
