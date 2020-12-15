@@ -1,0 +1,26 @@
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-image: url("../../assets/retro-background.png");
+        background-color: black;
+        background-size: 100vw 100vh;
+    }
+    
+    body .menu {
+        background-color: rgb(0, 0, 0);
+        opacity: 0.6;
+        width:61vw;
+        min-height: 70vh;
+        margin-top: 8%;
+        margin-left: 10%;
+    }
+
+  #myCanvas{
+    width:61vw;
+    min-height: 70vh;
+    border: 1px solid rgb(160, 160, 160);    
+    
+  }
