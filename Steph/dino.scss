@@ -1,0 +1,45 @@
+$canvas-height: 70vh;
+$canvas-width: 61vw;
+
+$dino-height: 50px;
+$dino-width: 30px;
+
+$block-height: 20px;
+$block-width: 20px;
+
+$game-color: white;
+
+// background
+*{
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   background-image: url("../../assets/retro-background.png");
+   background-color: black;
+   background-size: 100vw 100vh;
+}
+.game {
+   background-color: blue;
+   opacity: 0.6;
+   width: $canvas-width;
+   min-height: $canvas-height;
+   margin-top: 8%;
+   margin-left: 10%;
+}
+
+.dino {
+   width: $dino-width;
+   height: $dino-height;
+   background-color: $game-color;
+   position: absolute;
+   bottom: 0px;
+}
+.obstacle {
+   position: absolute;
+   width: 60px;
+   height: 60px;
+   background-color: orange;
+   bottom: 0;
+}
