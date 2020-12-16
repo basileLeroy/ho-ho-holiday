@@ -11,6 +11,8 @@ body {
 	--mark-size: calc(var(--cell-size) * .9);
 }
 
+/* GAME BOARD DIV */
+
 .board {
 	width: 100vw;
 	height: 100vh;
@@ -118,4 +120,44 @@ body {
 	width: calc(var(--mark-size) * .7);
 	height: calc(var(--mark-size) * .7);
 	background-color: white;
+}
+
+/* WINNING MESSAGE DIV */
+
+.winning-message {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	background-color: rgba(0, 0, 0, .9);
+	color: white;
+
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	
+	font-size: 55px;
+}
+
+.winning-message button {
+	font-size: 40px;
+	background-color: white;
+	border: 1px solid black;
+	margin-top: 30px;
+
+	padding: 15px 20px;
+	cursor: pointer;
+}
+
+.winning-message button:hover {
+	background-color: black;
+	border-color: white;
+	color: white;
+}
+
+.winning-message.show {
+	display: flex;
 }
