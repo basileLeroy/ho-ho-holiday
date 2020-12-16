@@ -211,7 +211,9 @@ const spaceBar = (space) => {
 // Adding eventListeners to move the player on the canvas:
 // TODO: finetuning the balance between player0 and mousemovement
 canvas.addEventListener('mousemove', action => {
-    pong.Players[0].position.y = action.offsetY;
+    const scaleMouse = action.offsetY / action.target.getBoundingClientRect().height
+
+    pong.Players[0].position.y = canvas.height * scaleMouse
 });
 
 // Keypress is not part of canvas nessessairly, better to use document instead
