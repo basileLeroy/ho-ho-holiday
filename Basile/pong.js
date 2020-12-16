@@ -1,4 +1,7 @@
 
+const RestartGame = document.querySelector('#GameResult');
+const RestartButton = document.querySelector('.START-BUTTON');
+
 class Vector {
     constructor(x = 0, y = 0) {
 
@@ -111,6 +114,12 @@ class Pong {
 
         this.Reset();
     }
+    // endGameMenu() {
+    //     if (this.Players[1].score >= 3) {
+    //         console.log("Game Over!");
+    //     }
+        
+    // }
 
     collide(Player, ball) {
         if (Player.left < ball.right && Player.right > ball.left && Player.top < ball.bottom && Player.bottom > ball.top) {
@@ -157,6 +166,15 @@ class Pong {
 
         this.ball.velocity.x = 0;
         this.ball.velocity.y = 0;
+
+        if (this.Players[1].score >= 5 ) {
+            RestartGame.style.display = "block"
+
+            RestartButton.addEventListener('click', () => {
+                location.reload();
+            })
+            console.log("Game Over!");
+        }
     }
 
     StartBall = () => {
@@ -182,6 +200,7 @@ class Pong {
             // Calling the reset if the ball touches the left or right side
             this.Reset(); 
         }
+        
 
         if (this.ball.top < 0 || this.ball.bottom > this._canvas.height) {
             this.ball.velocity.y = -this.ball.velocity.y;
@@ -192,8 +211,12 @@ class Pong {
 
         this.Players.forEach(player => this.collide(player, this.ball));
 
+        // this.endGameMenu();
+
         // Calling draw into the updating function
         this.draw();
+
+        
     }
 }
 
