@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", ()=>{
    // TODO create game canvas
    const canvas = document.querySelector("canvas");
+   const context = canvas.getContext('2d');
    const dino = document.querySelector(".dino");
    const grid = document.querySelector(".grid");
    const alert = document.getElementById("alert");
@@ -10,6 +11,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
    let position = 0;
    let gravity = 0.9;
    let isGameOver = false;
+
+   // TODO create game canvas
+   function draw () {
+      context.beginPath();
+   }
 
    function control (event) {
       if (event.keyCode === 32){
