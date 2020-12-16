@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
    const grid = document.querySelector(".grid");
    const gameOver = document.getElementById("gameOver");
    const scorePlayer = document.querySelector(".scorePlayer");
+   const currentScore = document.getElementById("currentScore");
    let isJumping = false;
    let position = 0;
    let gravity = 0.9;
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
    let startTime = new Date();
 // console.log(startTime);
 
+   grid.appendChild(scorePlayer);
 
    function control (event) {
       if (event.keyCode === 32){
@@ -74,9 +76,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
                grid.removeChild(grid.lastChild);
             }
             // ('Game over');
-            grid.appendChild(gameOver);
 
-         // TODO set score
+            grid.appendChild(gameOver);
+            // TODO add restart button;
+
+            // TODO set score
             // TODO get seconds from first game start
             function getScore () {   
                if (isGameOver) {
@@ -85,7 +89,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                   return  score += new Date() - startTime;
                }   
                console.log(score);
-               scorePlayer.innerHTML = `score: ${score}`;
+               currentScore.innerHTML = `score: ${score}`;
             }
             getScore();
             console.log (getScore());
@@ -111,14 +115,16 @@ generateObstacles();
 // TODO set score
    // TODO get seconds from first game start
    function getScore () {   
+      score += (new Date() - startTime)/1000;
+
       if (isGameOver) {
          console.log(score/1000 + 'Seconds');
-
-         return  score += new Date() - startTime;
-   
-      }   
+      }
+      return score;
    }
+   currentScore.innerHTML = score;
    console.log (getScore(score));
+   getScore();
       // TODO log high score
 
 }) 
