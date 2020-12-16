@@ -3,12 +3,15 @@
 document.addEventListener("DOMContentLoaded", ()=>{
    const dino = document.querySelector(".dino");
    const grid = document.querySelector(".grid");
-   const gameOver = document.getElementById("alert");
+   const gameOver = document.getElementById("gameOver");
+   const scorePlayer = document.querySelector(".scorePlayer");
    let isJumping = false;
    let position = 0;
    let gravity = 0.9;
    let isGameOver = false;
-
+   let score = 0;
+   let startTime = new Date();
+// console.log(startTime);
 
 
    function control (event) {
@@ -40,7 +43,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                dino.style.bottom = position +'px';      
 
             },20);
-         }
+         } 
          // move up 
          console.log('up');
          count ++;
@@ -50,9 +53,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
       },20)
    }
 
-   function generateObstacles () {
-      let obstaclePosition = 1000;
-      let randomTime = Math.random()*4000;
+      
+   function generateObstacles () { 
+      let obstaclePosition = grid.clientWidth - 50; //length canvas
+      let randomTime = Math.random()*6000;
       const obstacle = document.createElement('div');
 
       if (!isGameOver) {
@@ -66,20 +70,56 @@ document.addEventListener("DOMContentLoaded", ()=>{
             clearInterval(timerId);
             gameOver.innerHTML = 'Game over';
             isGameOver = true;
-            // while (grid.firstChild) {
-            //    grid.removeChild(grid.lastChild);
-            // }
-         }    
-         obstaclePosition -= 10;
-         obstacle.style.left = obstaclePosition + 'px';
-      }, 20)
+            while (grid.firstChild) {
+               grid.removeChild(grid.lastChild);
+            }
+            // ('Game over');
+            grid.appendChild(gameOver);
 
+         // TODO set score
+            // TODO get seconds from first game start
+            function getScore () {   
+               if (isGameOver) {
+                  console.log(score/1000 + 'Seconds');
+
+                  return  score += new Date() - startTime;
+               }   
+               console.log(score);
+               scorePlayer.innerHTML = `score: ${score}`;
+            }
+            getScore();
+            console.log (getScore());
+               // TODO when game over: clear score
+
+         }    
+
+         obstaclePosition -= 10  ;
+         obstacle.style.left = obstaclePosition + 'px';
+         if (obstaclePosition === 0){
+            grid.removeChild(grid.firstChild);
+         }
+         return isGameOver
+      }, 20)
+   
       if (!isGameOver){
          setTimeout(generateObstacles, randomTime);
       }
    }
 
 generateObstacles();
+
+// TODO set score
+   // TODO get seconds from first game start
+   function getScore () {   
+      if (isGameOver) {
+         console.log(score/1000 + 'Seconds');
+
+         return  score += new Date() - startTime;
+   
+      }   
+   }
+   console.log (getScore(score));
+      // TODO log high score
 
 }) 
 
