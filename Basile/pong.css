@@ -21,9 +21,10 @@ body .menu {
 }
 
 body #pongCanvas {
-  margin: 0 auto;
-  margin-top: 5%;
-  width: 80%;
+  margin: 50px 70px;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: fill;
   height: auto;
   border: 4px solid white;
 }
