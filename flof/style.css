@@ -22,5 +22,16 @@
     width:61vw;
     min-height: 70vh;
     border: 1px solid rgb(160, 160, 160);    
-    
   }
+
+#homeButton{
+    margin-top: 90vh;
+}
+.buttonContainer{
+    height:70vh;
+    width:61vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
