@@ -120,7 +120,7 @@ class Pong {
 
     draw() {
         // Canvas color
-        this._canvasContext.fillStyle = '#000';
+        this._canvasContext.fillStyle = '#0707F4';
         this._canvasContext.fillRect(0, 0, this._canvas.width, this._canvas.height);
     
         // Telling drawRectangle to draw the ball here:
@@ -164,8 +164,8 @@ class Pong {
         // "If the ball doesn't move"
         if (this.ball.velocity.x === 0 && this.ball.velocity.y === 0) {
 
-            this.ball.velocity.x = 150 * (Math.random() > .5 ? 1 : -1);
-            this.ball.velocity.y = 200 * (Math.random() * 2 -1);
+            this.ball.velocity.x = 250 * (Math.random() > .5 ? 1 : -1);
+            this.ball.velocity.y = 150 * (Math.random() * 2 -1);
         }
     }
 
