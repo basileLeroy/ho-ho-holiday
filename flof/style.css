@@ -1,0 +1,50 @@
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-image: url("../../assets/retro-background.png");
+        background-color: black;
+        background-size: 100vw 100vh;
+        
+    }
+    
+    body .menu {
+        background-color: rgb(0, 0, 0);
+        opacity: 0.6;
+        width:61vw;
+        min-height: 70vh;
+        margin-top: 8%;
+        margin-left: 10%;
+    }
+
+  #myCanvas{
+        width:61vw;
+        min-height: 70vh;
+        border: 1px solid rgb(160, 160, 160);    
+  }
+
+    .buttonContainer{
+        width: 100%;
+        height:50vh;
+        position: absolute;
+        text-align: right;}
+    
+    .pageButton {
+        background-color: rgb(7, 70, 7);
+        color: rgb(255, 255, 255);
+        border: 4px rgb(14, 88, 7) inset ;
+        padding: 10px;
+        text-decoration: none;
+        font-family: 'Press Start 2P', cursive;}
+    
+    .pageButton:hover {
+        background-color: #3fb143;} 
+        
+    
+
+  
+
+
+
