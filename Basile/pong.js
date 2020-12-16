@@ -1,4 +1,3 @@
-
 const RestartGame = document.querySelector('#GameResult');
 const RestartButton = document.querySelector('.START-BUTTON');
 
@@ -44,7 +43,6 @@ class Player extends Rectangle {
     constructor() {
         super(7, 40);
         this.score = 0;
-
     }
 }
 
@@ -56,7 +54,6 @@ class Pong {
 
         this.ball = new Ball
         // console.log(ball);
-
 
         // Adding players to the game:
         this.Players = [
@@ -111,15 +108,8 @@ class Pong {
             });
             return canvas
         })
-
         this.Reset();
     }
-    // endGameMenu() {
-    //     if (this.Players[1].score >= 3) {
-    //         console.log("Game Over!");
-    //     }
-        
-    // }
 
     collide(Player, ball) {
         if (Player.left < ball.right && Player.right > ball.left && Player.top < ball.bottom && Player.bottom > ball.top) {
@@ -211,12 +201,8 @@ class Pong {
 
         this.Players.forEach(player => this.collide(player, this.ball));
 
-        // this.endGameMenu();
-
         // Calling draw into the updating function
         this.draw();
-
-        
     }
 }
 
@@ -226,13 +212,11 @@ const pong = new Pong(canvas);
 
 const spaceBar = (space) => {
     if (space.keyCode == 32) {
-
         pong.StartBall();
     }
 };
 
 // Adding eventListeners to move the player on the canvas:
-// TODO: finetuning the balance between player0 and mousemovement
 canvas.addEventListener('mousemove', action => {
     const scaleMouse = action.offsetY / action.target.getBoundingClientRect().height
 
