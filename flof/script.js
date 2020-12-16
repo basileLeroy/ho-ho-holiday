@@ -195,5 +195,5 @@ function collisionDetection() {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-//bricksArray();
+bricksArray();
 
