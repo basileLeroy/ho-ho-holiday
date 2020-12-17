@@ -1,5 +1,6 @@
 const RestartGame = document.querySelector('#GameResult');
 const RestartButton = document.querySelector('.START-BUTTON');
+const PressStart = document.querySelector('#pressStart');
 
 class Vector {
     constructor(x = 0, y = 0) {
@@ -213,6 +214,8 @@ const pong = new Pong(canvas);
 const spaceBar = (space) => {
     if (space.keyCode == 32) {
         pong.StartBall();
+        PressStart.style.display = 'none';
+
     }
 };
 
