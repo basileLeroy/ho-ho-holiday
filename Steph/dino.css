@@ -7,34 +7,36 @@
   src: url(../assets/ka1.ttf);
 }
 body { 
+  position: absolute;
   background-attachment: fixed;
   background-position-y: 0;
   background-image: url("../../assets/retro-background.png");
   background-repeat: no-repeat;
   background-color: black;
   background-size: 100vw 700px;
-  /* z-index: ; */
+  z-index: 10;
 } 
 .grid {
-  position: absolute;
+  position: relative;
   background-color: green;
   background-image: url("assets/scene.png");
   background-position-y: bottom;
   opacity: 1;
   width: 61vw;
   min-height: 65vh;
-  top: 16%;
+  top: 110px;
   left: 150px;
-}
+  z-index: -10;
+} 
 
 .dino {
   width: 90px;
   height: 100px;
   background-image: url("assets/dino.png");
-  filter: drop-shadow(-2px 0 0 white);
+  filter: drop-shadow(-2px 2px 0 rgb(54, 54, 54));
   position: absolute;
-  bottom: 0px;
-  left: 10px;
+  bottom: 10px;
+  left: 20px;
 }
 
 /* TODO rotation obstacle? */
@@ -43,7 +45,7 @@ body {
   height: 50px;
   background-image: url("assets/rock.png");
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   background-size: contain;
   animation: rotate 1s infinite linear;
 }
@@ -54,17 +56,19 @@ body {
     transform: rotate(0deg)}
 }
 h2 {
+  position: relative;
   text-align: center;
-  margin-top: 100px;
+  top: 100px;
   font-family: game-over;
   font-size: 40px;
   color: white;
 }
 p {
+  position: relative;
   font-family: 'Press Start 2P', cursive;
   color: black;
   font-size:20px;
-  margin-left: 20px;
-  margin-top: 20px;
+  top: 20px;
+  left: 20px;
 }
 /*# sourceMappingURL=dino.css.map */
