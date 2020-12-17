@@ -215,7 +215,6 @@ const spaceBar = (space) => {
     if (space.keyCode == 32) {
         pong.StartBall();
         PressStart.style.display = 'none';
-
     }
 };
 

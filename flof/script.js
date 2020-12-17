@@ -1,15 +1,12 @@
 // TODO: import pause button (alert("your game is now paused") when you push 'p' or 'F3' key )
 // TODO: import colour change on paddle hit (do +1 on array index)
-// TODO: game over only on y = 0 and not on paddleheight
-
-
 
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
 
     // ball variables
     let ballRadius = 3;
-    let ballSpeed = 25;
+    let ballSpeed = 100000000000000000;
 
     // that's some paddlin'
     let paddleHeight = 3;
@@ -31,15 +28,15 @@
     let rightPressed = false;
     let leftPressed = false;
 
-    //ballcolor    
+    //ballcolor
     let randomNumber = Math.floor(Math.random()*10)
     let colorArray = ["blue", "yellow", "indigo", "brown", "grey", "green", "orange", "lilac", "purple", "pink", "gold"];
     let randomColor = colorArray[randomNumber];console.log(randomColor);
     //draw ball interval
     
-    let interval = setInterval(draw, ballSpeed,);
+   
 
-    //brick variables   
+    //brick variables
     let brickRowCount =5;
     let brickColumnCount = 10;
     let brickWidth = 20;
@@ -48,16 +45,10 @@
     let brickOffsetTop = 10;
     let brickOffsetLeft = 30
     let bricks = [];
-    //fill bricks array
 
- 
-    // if (any.keyCode = "Space") 
-    // {
-    //         console.log("eyy")
-    //       document.querySelector("welcomeBanner").style.display = "none";
-    // }
-      
-    
+setInterval(draw, ballSpeed,);
+
+
 function bricksArray(){
     for(let c=0; c<brickColumnCount; c++) {
         bricks[c] = [];
@@ -84,7 +75,7 @@ function drawPaddle() {
 }
 
 function draw() {  
-
+console.log("wss nie")
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall(); 
     drawPaddle(); 
@@ -92,6 +83,9 @@ function draw() {
     collisionDetection(); 
     
    
+    if (bricks.status == 0)
+    { document.querySelector(".welcomeBanner").style.display = "none"; }
+
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
@@ -107,12 +101,12 @@ function draw() {
                 dx = dx - 1.5
 
                 //if bounce on center of paddle
-        } if (x > paddleX + (paddleWidth*0.4) && x < paddleX + (paddleWidth*0.6)){
+        }if (x > paddleX + (paddleWidth*0.4) && x < paddleX + (paddleWidth*0.6)){
                 dy= -dy;
                 dx= 0;
 
                 //if bounce on right side paddle
-        } if (x >paddleX + (paddleWidth*0.6) && x < paddleX + paddleWidth){
+        }if (x >paddleX + (paddleWidth*0.6) && x < paddleX + paddleWidth){
                 dy = -dy;
                 dx = dx + 1.5
                  // game over
@@ -121,9 +115,10 @@ function draw() {
                 document.querySelector(".startButton").style.display = "inline";
                 document.querySelector(".gameOverBanner").style.display = "inline";
                 return
+                
                 // document.location.reload(); 
                 // clearInterval(interval); 
-        }
+        } 
     }
     x += dx;
     y += dy;
@@ -141,6 +136,14 @@ function draw() {
         }
     }
 }
+
+ document.querySelector(".homeButtonTwo").addEventListener("click", 
+    function startBall() {
+    ballSpeed = 25;
+    console.log(ballSpeed)
+    setInterval(draw, ballSpeed,);
+    }
+)
 
 function drawBricks() {
     for(var c=0; c<brickColumnCount; c++) {
