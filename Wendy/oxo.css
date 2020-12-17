@@ -1,9 +1,27 @@
 *, *::after, *::before{
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
+
+  
 body {
-	margin: 0;
+background-image: url("../assets/retro-background.png");
+background-color: black;
+background-size: 100vw 100vh;
+font-family: 'Press Start 2P', cursive;
+color: white;
+
+margin: 0;
+}
+
+body .menu {
+width: 61vw;
+min-height: 70vh;
+margin: auto;
+margin-top: 8%;
+margin-left: 10%;
 }
 
 :root {
@@ -13,9 +31,9 @@ body {
 
 /* GAME BOARD DIV */
 
-.board {
-	width: 100vw;
-	height: 100vh;
+body .menu .board {
+	width: fill;
+	height: 70vh;
 
 	display: grid;
 	justify-content: center;
@@ -26,7 +44,7 @@ body {
 	grid-template-columns: repeat(3, auto);
 }
 
-.cell {
+body .menu .board .cell {
 	background-color: white;
 	width: var(--cell-size);
 	height: var(--cell-size);
@@ -40,41 +58,41 @@ body {
 	cursor: pointer;
 }
 
-.cell.x,
-.cell.circle {
+body .menu .board .cell.x,
+body .menu .board .cell.circle {
 	cursor: not-allowed;
 }
 
-.board.x .cell:hover {
+body .menu .board.x .cell:hover {
 
 }
 
-.cell:first-child,
-.cell:nth-child(2),
-.cell:nth-child(3) {
+body .menu .board .cell:first-child,
+body .menu .board .cell:nth-child(2),
+body .menu .board .cell:nth-child(3) {
 	border-top: none;
 }
 
-.cell:nth-child(3n + 1) {
+body .menu .board .cell:nth-child(3n + 1) {
 	border-left: none;
 }
 
-.cell:nth-child(3n + 3) {
+body .menu .board .cell:nth-child(3n + 3) {
 	border-right: none;
 }
 
-.cell:last-child,
-.cell:nth-child(7),
-.cell:nth-child(8) {
+body .menu .board .cell:last-child,
+body .menu .board .cell:nth-child(7),
+body .menu .board .cell:nth-child(8) {
 	border-bottom: none;
 }
 
-.cell.x::before,
-.cell.x::after,
-.cell.circle::before,
-.cell.circle::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
+body .menu .board .cell.x::before,
+body .menu .board .cell.x::after,
+body .menu .board .cell.circle::before,
+body .menu .board .cell.circle::after,
+body .menu .board.x .cell:not(.x):not(.circle):hover::before,
+body .menu .board.x .cell:not(.x):not(.circle):hover::after {
 	content: '';
 	position: absolute;
 	width: calc(var(--mark-size) * .15);
@@ -82,41 +100,41 @@ body {
 	background-color: black;
 }
 
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+body .menu .board.x .cell:not(.x):not(.circle):hover::before,
+body .menu .board.x .cell:not(.x):not(.circle):hover::after,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::before,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::after {
 	background-color: lightgray;
 }
 
-.cell.x::before,
+body .menu .board .cell.x::before,
 .board.x .cell:not(.x):not(.circle):hover::before {
 	transform: rotate(45deg);
 }
 
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
+body .menu .board .cell.x::after,
+body .menu .board.x .cell:not(.x):not(.circle):hover::after {
 	transform: rotate(-45deg);
 }
 
-.cell.circle::before,
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+body .menu .board .cell.circle::before,
+body .menu .board .cell.circle::after,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::before,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::after {
 	content: '';
 	position: absolute;
 	border-radius: 50%;
 }
 
-.cell.circle::before,
-.board.circle .cell:not(.x):not(.circle):hover::before {
+body .menu .board .cell.circle::before,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::before {
 	width: var(--mark-size);
 	height: var(--mark-size);
 	
 }
 
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+body .menu .board .cell.circle::after,
+body .menu .board.circle .cell:not(.x):not(.circle):hover::after {
 	width: calc(var(--mark-size) * .7);
 	height: calc(var(--mark-size) * .7);
 	background-color: white;
@@ -124,7 +142,7 @@ body {
 
 /* WINNING MESSAGE DIV */
 
-.winning-message {
+body .menu .winning-message {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -142,7 +160,7 @@ body {
 	font-size: 55px;
 }
 
-.winning-message button {
+body .menu .winning-message button {
 	font-size: 40px;
 	background-color: white;
 	border: 1px solid black;
@@ -152,12 +170,34 @@ body {
 	cursor: pointer;
 }
 
-.winning-message button:hover {
+body .menu .winning-message button:hover {
 	background-color: black;
 	border-color: white;
 	color: white;
 }
 
-.winning-message.show {
+body .menu .winning-message.show {
 	display: flex;
 }
+
+body .buttonContainer {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	text-align: right;
+	right: 5%;
+	bottom: 15%;
+  }
+  
+  body .pageButton {
+	background-color: #074607;
+	color: white;
+	border: 4px #0e5807 inset;
+	padding: 10px;
+	text-decoration: none;
+	font-family: 'Press Start 2P', cursive;
+  }
+  
+  body .pageButton:hover {
+	background-color: #3fb143;
+  }
