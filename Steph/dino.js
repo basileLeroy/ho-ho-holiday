@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
    const scorePlayer = document.querySelector(".scorePlayer");
    const currentScore = document.getElementById("currentScore");
    let isJumping = false;
-   let position = 0;
+   let positionDino = 0;
    let gravity = 0.9;
    let isGameOver = false;
    let score = 0;
@@ -39,25 +39,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
                   clearInterval(downTimerId);
                   isJumping = false;
                }
-               position -= 5;
+               positionDino -= 5;
                count --;
-               position = position * gravity;
-               dino.style.bottom = position +'px';      
+               positionDino = positionDino * gravity;
+               dino.style.bottom = positionDino +'px';      
 
             },20);
          } 
          // move up 
          console.log('up');
          count ++;
-         position += 30;
-         position = position * gravity;
-         dino.style.bottom = position + 'px';
+         positionDino += 30;
+         positionDino = positionDino * gravity;
+         dino.style.bottom = positionDino + 'px';
       },20)
    }
 
       
    function generateObstacles () { 
+
       let obstaclePosition = grid.clientWidth - 50; //length canvas
+      // TODO make random blocks not too close to eachother
       let randomTime = Math.random()*6000;
       const obstacle = document.createElement('div');
 
@@ -68,41 +70,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
       obstacle.style.left = obstaclePosition + 'px';
 
       let timerId = setInterval(function(){
-         if (obstaclePosition > 0 && obstaclePosition < 60 && position < 60){
+         getScore();
+
+         const collisionDino = obstaclePosition > 0 && obstaclePosition < 60 && positionDino < 60;
+         const obstaclePassed = obstaclePosition <= 0;
+         if (collisionDino){
             clearInterval(timerId);
             gameOver.innerHTML = 'Game over';
             isGameOver = true;
             while (grid.firstChild) {
                grid.removeChild(grid.lastChild);
-            }
-            // ('Game over');
-
+            } 
             grid.appendChild(gameOver);
-            // TODO add restart button;
-
-            // TODO set score
-            // TODO get seconds from first game start
-            function getScore () {   
-               if (isGameOver) {
-                  console.log(score/1000 + 'Seconds');
-
-                  return  score += new Date() - startTime;
-               }   
-               console.log(score);
-               currentScore.innerHTML = `score: ${score}`;
-            }
-            getScore();
-            console.log (getScore());
-               // TODO when game over: clear score
-
          }    
-
+         if (obstaclePassed) {
+            obstacle.remove();
+         }
          obstaclePosition -= 10  ;
          obstacle.style.left = obstaclePosition + 'px';
-         if (obstaclePosition === 0){
-            grid.removeChild(grid.firstChild);
-         }
-         return isGameOver
+         // TODO return isGameOver
       }, 20)
    
       if (!isGameOver){
@@ -116,16 +102,17 @@ generateObstacles();
    // TODO get seconds from first game start
    function getScore () {   
       score += (new Date() - startTime)/1000;
-
+      currentScore.innerHTML = Math.round(score);
+      console.log(score)
+   
       if (isGameOver) {
+         // TODO push to array for highscore
          console.log(score/1000 + 'Seconds');
       }
       return score;
    }
-   currentScore.innerHTML = score;
-   console.log (getScore(score));
-   getScore();
-      // TODO log high score
+               // TODO when game over: clear score and log score to array for Highscore
 
 }) 
+
 
