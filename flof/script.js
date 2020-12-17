@@ -36,6 +36,7 @@
     let colorArray = ["blue", "yellow", "indigo", "brown", "grey", "green", "orange", "lilac", "purple", "pink", "gold"];
     let randomColor = colorArray[randomNumber];console.log(randomColor);
     //draw ball interval
+    
     let interval = setInterval(draw, ballSpeed,);
 
     //brick variables   
@@ -49,6 +50,14 @@
     let bricks = [];
     //fill bricks array
 
+ 
+    // if (any.keyCode = "Space") 
+    // {
+    //         console.log("eyy")
+    //       document.querySelector("welcomeBanner").style.display = "none";
+    // }
+      
+    
 function bricksArray(){
     for(let c=0; c<brickColumnCount; c++) {
         bricks[c] = [];
@@ -74,7 +83,8 @@ function drawPaddle() {
     ctx.closePath();
 }
 
-function draw() {
+function draw() {  
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall(); 
     drawPaddle(); 
