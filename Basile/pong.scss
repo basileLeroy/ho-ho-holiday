@@ -19,7 +19,6 @@ body {
     color: white;
 
     .menu {
-        background-color: black;
         text-align: center;
         // opacity: 0.6;
         width: 61vw;
@@ -36,6 +35,8 @@ body {
         height: auto;
 
         border: 4px solid white;
+
+        
     }
 
     #pressStart {
@@ -102,6 +103,8 @@ body {
         height:auto;
         position: absolute;
         text-align: right;
+        right: 5%;
+        bottom: 15%;
     }
         
     .pageButton {
