@@ -107,9 +107,12 @@ function draw() {
                 dx = dx + 1.5
                  // game over
         }if (y + dy > canvas.height - ballRadius + paddleHeight){
-                alert("GAME OVER");
-                document.location.reload();
-                clearInterval(interval); 
+           
+                document.querySelector(".startButton").style.display = "inline";
+                document.querySelector(".gameOverBanner").style.display = "inline";
+                return
+                // document.location.reload(); 
+                // clearInterval(interval); 
         }
     }
     x += dx;
