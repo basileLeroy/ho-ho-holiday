@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
    const dino = document.querySelector(".dino");
    const grid = document.querySelector(".grid");
    const gameOver = document.getElementById("gameOver");
@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
    let score = 0;
    let highScore = 0;
    let startTime = new Date();
-// console.log(startTime);
 
+// console.log(startTime);
    grid.appendChild(scorePlayer);
 
    function control (event) {
-      if (event.keyCode === 32){
+      if (event.keyCode === 32) {
          //when spacebar is pressed: if isJumping is false, set isJumping to true and let jump happen
-         if (!isJumping){ 
+         if (!isJumping) {
             isJumping = true;
             jump();
          }
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
    // execute control when the spacebar has been pressed
    document.addEventListener("keydown", control);
 
-   function jump (){
+   function jump () {
       let count = 0;
       let timerID = setInterval(function(){
          // move down
