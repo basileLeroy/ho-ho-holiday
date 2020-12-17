@@ -6,7 +6,7 @@
 
     // ball variables
     let ballRadius = 3;
-    let ballSpeed = 100000000000000000;
+    let ballSpeed = 1000 * 60 * 60 * 100;
 
     // that's some paddlin'
     let paddleHeight = 3;
@@ -31,7 +31,7 @@
     //ballcolor
     let randomNumber = Math.floor(Math.random()*10)
     let colorArray = ["blue", "yellow", "indigo", "brown", "grey", "green", "orange", "lilac", "purple", "pink", "gold"];
-    let randomColor = colorArray[randomNumber];console.log(randomColor);
+    let randomColor = colorArray[randomNumber];
     //draw ball interval
     
    
