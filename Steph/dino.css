@@ -23,7 +23,7 @@ body {
   background-position-y: bottom;
   opacity: 1;
   width: 61vw;
-  min-height: 65vh;
+  height: 500px;
   top: 110px;
   left: 150px;
   z-index: -1;

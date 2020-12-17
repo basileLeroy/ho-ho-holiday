@@ -16,9 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
    let highScore = 0;
    let startTime = new Date();
 
-// console.log(startTime);
-   grid.appendChild(scorePlayer);
-
    function control (event) {
       if (event.keyCode === 32) {
          //when spacebar is pressed: if isJumping is false, set isJumping to true and let jump happen
@@ -80,13 +77,18 @@ document.addEventListener("DOMContentLoaded", () => {
             gameOver.innerHTML = 'Game over';
             grid.style.backgroundImage = 'none';
 
-            currentScore.innerHTML = Math.round(score);
+            currentScore.innerHTML = score;
 
             isGameOver = true;
             while (grid.firstChild) { 
                grid.removeChild(grid.lastChild);
             } 
             grid.appendChild(gameOver);
+            // TODO set score after game
+            const scoreAfterGame = document.createElement('p');
+            grid.appendChild(scoreAfterGame);
+            scoreAfterGame.classList.add("endScore");
+            scoreAfterGame.innerHTML = 'score: '+score;   
          }    
          if (obstaclePassed) {
             obstacle.remove();
@@ -103,7 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 generateObstacles();
 
-// TODO set score
+
+
    // get seconds from first game start
    function getScore () {  
       score += Math.round((new Date() - startTime)/1000);
