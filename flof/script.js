@@ -32,12 +32,12 @@
     let randomNumber = Math.floor(Math.random()*10)
     let colorArray = ["blue", "yellow", "indigo", "brown", "grey", "green", "orange", "lilac", "purple", "pink", "gold"];
     let randomColor = colorArray[randomNumber];
-    //draw ball interval
-    
-   
+  
+    //scoreboard
+    let score = 0;
 
     //brick variables
-    let brickRowCount =5;
+    let brickRowCount = 5;
     let brickColumnCount = 10;
     let brickWidth = 20;
     let brickHeight = 8;
@@ -47,7 +47,6 @@
     let bricks = [];
 
 setInterval(draw, ballSpeed,);
-
 
 function bricksArray(){
     for(let c=0; c<brickColumnCount; c++) {
@@ -75,13 +74,12 @@ function drawPaddle() {
 }
 
 function draw() {  
-console.log("wss nie")
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall(); 
     drawPaddle(); 
     drawBricks(); 
     collisionDetection(); 
-    
+    drawScore();
    
     if (bricks.status == 0)
     { document.querySelector(".welcomeBanner").style.display = "none"; }
@@ -109,15 +107,12 @@ console.log("wss nie")
         }if (x >paddleX + (paddleWidth*0.6) && x < paddleX + paddleWidth){
                 dy = -dy;
                 dx = dx + 1.5
-                 // game over
+                 // game over   
         }if (y + dy > canvas.height - ballRadius + paddleHeight){
-           
                 document.querySelector(".startButton").style.display = "inline";
                 document.querySelector(".gameOverBanner").style.display = "inline";
-                return
-                
-                // document.location.reload(); 
-                // clearInterval(interval); 
+                document.querySelector(".homeButtonTwo").style.display = "none";
+                 clearInterval(interval); 
         } 
     }
     x += dx;
@@ -180,6 +175,11 @@ function keyUpHandler(any) {
         leftPressed = false;
     }
 }
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
+}
 
 function collisionDetection() {
     for(let c=0; c<brickColumnCount; c++) {
@@ -190,8 +190,11 @@ function collisionDetection() {
             if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                 dy = -dy;
                 b.status = 0;
-               
-              
+                score++; console.log(score)
+                
+                if(score == brickRowCount*brickColumnCount) {
+                    alert("YOU WIN, CONGRATULATIONS!");
+                }
                 //splice?
 
                 //bricks[c][r] = { x: 0, y: 0, status: 0 };
