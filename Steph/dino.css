@@ -6,26 +6,29 @@
   font-family: game-over;
   src: url(../assets/ka1.ttf);
 }
-body { 
+body{
+  overflow: auto;
+  background-color:black;
+}
+.game { 
   position: relative;
-  background-attachment: fixed;
-  background-position-y: 0;
+  /* background-position-y: 10; */
   background-image: url("../../assets/retro-background.png");
-  background-repeat: no-repeat;
-  background-color: black;
+  /* background-repeat: no-repeat; */
   background-size: 100vw 700px;
-  z-index: 10;
+  height:700px;
 } 
 .grid {
   position: relative;
   background-color: green;
   background-image: url("assets/scene.png");
   background-position-y: bottom;
+  background-size: cover;
   opacity: 1;
-  width: 61vw;
-  height: 500px;
-  top: 110px;
-  left: 150px;
+  width: 65vw;
+  height: 534px;
+  top: 90px;
+  left: 132px;
   z-index: -1;
 } 
 
@@ -35,8 +38,8 @@ body {
   height: 100px;
   background-image: url("assets/dino.png");
   filter: drop-shadow(-2px 2px 0 rgb(54, 54, 54));
-  bottom: 10px;
-  left: 20px;
+  bottom: 20px;
+  left: 40px;
 }
 
 /* TODO rotation obstacle? */
@@ -66,19 +69,21 @@ h2 {
 p {
   position: relative;
   font-family: 'Press Start 2P', cursive;
-  color: black;
+  color: white;
   font-size:20px;
-  top: 20px;
+  top: 60px;
   left: 20px;
 }
-body .buttonContainer {
+.buttonContainer {
   width: 100%;
   height: auto;
-  position: absolute;
+  position: relative;
   text-align: right;
+  right: 5%;
+  bottom: -70px;
 }
 
-body .pageButton {
+.pageButton {
   background-color: #074607;
   color: white;
   border: 4px #0e5807 inset;
@@ -86,8 +91,7 @@ body .pageButton {
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
 }
-
-body .pageButton:hover {
+.pageButton:hover {
   background-color: #3fb143;
 }
 /*# sourceMappingURL=dino.css.map */

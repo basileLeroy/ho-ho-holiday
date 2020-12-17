@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
    const gameOver = document.getElementById("gameOver");
    const scorePlayer = document.querySelector(".scorePlayer");
    const currentScore = document.getElementById("currentScore");
+   const jumpSound = document.querySelector("#jump-sound");
+   const gameOverSound = document.querySelector("#game-over-sound");
    // const highScore = document.createElement('div');
 
    let isJumping = false;
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
          if (!isJumping) {
             isJumping = true;
             jump();
+            jumpSound.play();
          }
       }
    }
@@ -32,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let count = 0;
       let timerID = setInterval(function(){
          // move down
-         if (count === 15){
+         if (count === 18){
             clearInterval(timerID);
             let downTimerId = setInterval(function(){
-               if (count === 2 ) {
+               if (count === 6 ) {
                   clearInterval(downTimerId);
                   isJumping = false;
                }
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                count --;
                positionDino = positionDino * gravity;
                dino.style.bottom = positionDino +'px';      
-            },20);
+            },20); 
          } 
          // move up 
          console.log('up');
@@ -70,16 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let timerId = setInterval(function(){
          getScore();
-         const collisionDino = obstaclePosition > 0 && obstaclePosition < 80 && positionDino < 80;
-         const obstaclePassed = obstaclePosition <= 0;
+
+         const collisionDino = obstaclePosition > 0 && obstaclePosition < 100 && positionDino < 100;
          if (collisionDino){
-            clearInterval(timerId);
             gameOver.innerHTML = 'Game over';
             grid.style.backgroundImage = 'none';
 
             currentScore.innerHTML = score;
 
             isGameOver = true;
+            gameOverSound.play();
             while (grid.firstChild) { 
                grid.removeChild(grid.lastChild);
             } 
@@ -88,8 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const scoreAfterGame = document.createElement('p');
             grid.appendChild(scoreAfterGame);
             scoreAfterGame.classList.add("endScore");
-            scoreAfterGame.innerHTML = 'score: '+score;   
+            scoreAfterGame.innerHTML = 'score: '+ score;
+            
+            clearInterval(timerId);
+
          }    
+
+         const obstaclePassed = obstaclePosition <= 0;
          if (obstaclePassed) {
             obstacle.remove();
          }
@@ -97,7 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
          obstacle.style.left = obstaclePosition + 'px';
          // TODO return isGameOver
       }, 20)
-   
+      console.log(isGameOver);
+
       if (!isGameOver){
          setTimeout(generateObstacles, randomTime);
       }
@@ -116,7 +125,7 @@ generateObstacles();
 if (isGameOver) {
    // TODO push to array for highscore
    highScoreValues.push(score);
-   console.log(highScoreValues)
+   console.log(score)
 }
 }) 
 
