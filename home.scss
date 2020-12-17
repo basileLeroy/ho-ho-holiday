@@ -56,7 +56,17 @@ body {
                     margin-left: 30px;
                     color: white;
                     
+                    #pointer {
+                        display: none;
+                        margin: auto;
+                        padding-right: 10px;
+                    }
                 }
+
+                .menu-Button:hover #pointer{
+                    display: inline-block;
+                }
+
             }
         }
     } 
