@@ -6,14 +6,15 @@
   font-family: game-over;
   src: url(../assets/ka1.ttf);
 }
-/* body { 
+body { 
   background-attachment: fixed;
   background-position-y: 0;
   background-image: url("../../assets/retro-background.png");
   background-repeat: no-repeat;
   background-color: black;
   background-size: 100vw 700px;
-}  */
+  /* z-index: ; */
+} 
 .grid {
   position: absolute;
   background-color: green;
@@ -23,7 +24,7 @@
   width: 61vw;
   min-height: 65vh;
   top: 16%;
-  left: 130px;
+  left: 150px;
 }
 
 .dino {
@@ -33,6 +34,7 @@
   filter: drop-shadow(-2px 0 0 white);
   position: absolute;
   bottom: 0px;
+  left: 10px;
 }
 
 /* TODO rotation obstacle? */
@@ -62,6 +64,7 @@ p {
   font-family: 'Press Start 2P', cursive;
   color: black;
   font-size:20px;
-  text-align: left;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=dino.css.map */

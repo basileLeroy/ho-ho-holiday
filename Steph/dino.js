@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
       let timerId = setInterval(function(){
          getScore();
-         const collisionDino = obstaclePosition > 0 && obstaclePosition < 60 && positionDino < 60;
+         const collisionDino = obstaclePosition > 0 && obstaclePosition < 80 && positionDino < 80;
          const obstaclePassed = obstaclePosition <= 0;
          if (collisionDino){
             clearInterval(timerId);
