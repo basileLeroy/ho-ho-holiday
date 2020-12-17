@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: game-over;
+  src: url(../assets/ka1.ttf);
+}
+
 body {
   background-image: url("../assets/retro-background.png");
   background-color: black;
@@ -48,6 +53,7 @@ body #pressStart h1 {
 body #GameResult {
   display: none;
   position: absolute;
+  font-family: game-over;
   top: 300px;
   left: 500px;
   width: 300px;
