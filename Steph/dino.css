@@ -17,9 +17,11 @@
 .grid {
   position: absolute;
   background-color: green;
+  background-image: url("assets/scene.png");
+  background-position-y: bottom;
   opacity: 1;
   width: 61vw;
-  height: 65vh;
+  min-height: 65vh;
   top: 16%;
   left: 130px;
 }
@@ -28,6 +30,7 @@
   width: 90px;
   height: 100px;
   background-image: url("assets/dino.png");
+  filter: drop-shadow(-2px 0 0 white);
   position: absolute;
   bottom: 0px;
 }

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
    let gravity = 0.9;
    let isGameOver = false;
    let score = 0;
+   let highScoreValues = [];
    let startTime = new Date();
 // console.log(startTime);
 
@@ -43,7 +44,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
                count --;
                positionDino = positionDino * gravity;
                dino.style.bottom = positionDino +'px';      
-
             },20);
          } 
          // move up 
@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       // TODO make random blocks not too close to eachother
       let randomTime = Math.random()*6000;
       const obstacle = document.createElement('div');
+      const highScore = document.createElement('div');
 
       if (!isGameOver) {
          obstacle.classList.add("obstacle");
@@ -71,14 +72,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
       let timerId = setInterval(function(){
          getScore();
-
          const collisionDino = obstaclePosition > 0 && obstaclePosition < 60 && positionDino < 60;
          const obstaclePassed = obstaclePosition <= 0;
          if (collisionDino){
             clearInterval(timerId);
+            // highScore.classList.add("highscore");
             gameOver.innerHTML = 'Game over';
+            grid.style.backgroundImage = 'none';
+            // grid.appendChild(highScore);
+
+            currentScore.innerHTML = Math.round(score);
+
             isGameOver = true;
-            while (grid.firstChild) {
+            while (grid.firstChild) { 
                grid.removeChild(grid.lastChild);
             } 
             grid.appendChild(gameOver);
@@ -99,19 +105,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
 generateObstacles();
 
 // TODO set score
-   // TODO get seconds from first game start
+   // get seconds from first game start
    function getScore () {   
       score += (new Date() - startTime)/1000;
       currentScore.innerHTML = Math.round(score);
-      console.log(score)
    
       if (isGameOver) {
          // TODO push to array for highscore
-         console.log(score/1000 + 'Seconds');
+         highScoreValues.push(score);
+         console.log(highScoreValues);
       }
-      return score;
    }
-               // TODO when game over: clear score and log score to array for Highscore
+// TODO when game over: clear score and log score to array for Highscore
 
 }) 
 
