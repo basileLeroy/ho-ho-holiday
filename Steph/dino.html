@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="dino.css">
-   <script src="dino.js" defer></script>
-   <title> Dino parcours</title>
-   <link rel="preconnect" href="https://fonts.gstatic.com">
-   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
-   <!-- favicon -->
-   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-
-   <!-- Global site tag (gtag.js) - Google Analytics - posted by FLOF-->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z6NX0W0RP"></script>
-   <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
-
-   gtag('config', 'G-9Z6NX0W0RP');
-   </script>
-   
-</head>
-<body>
-   <audio id= "jump-sound" src="assets/zapsplat_cartoon.mp3"></audio>
-   <audio src="assets/zapsplat_game_over.mp3" id="game-over-sound"></audio>
-   <div class="game">
-      <h2 id="gameOver"></h2>
-
-      <div class="grid">
-         <p class="scorePlayer">score: <span id="currentScore"></span></p>
-
-         <div class="dino"></div>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="dino.css">
+      <script src="dino.js" defer></script>
+      <title> Dino parcours</title>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+      <!-- favicon -->
+      <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+      <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+      <!-- Global site tag (gtag.js) - Google Analytics - posted by FLOF-->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z6NX0W0RP"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-9Z6NX0W0RP');
+      </script>
+   </head>
+   <body>
+      <audio id= "jump-sound" src="assets/zapsplat_cartoon.mp3"></audio>
+      <audio src="assets/zapsplat_game_over.mp3" id="game-over-sound"></audio>
+      <div class="game">
+         <h2 id="gameOver"></h2>
+         <div class="grid">
+            <p class="scorePlayer">score: <span id="currentScore"></span></p>
+            <div class="dino"></div>
+         </div>
+         <div class="buttonContainer">
+            <a href="../Home.html" class="pageButton homeButtonOne">Homepage</a>
+         </div>
       </div>
-   <div class="buttonContainer">
-      <a href="../Home.html" class="pageButton homeButtonOne">Homepage</a>
-  </div>
-</div>
-
-</body>
+   </body>
 </html>

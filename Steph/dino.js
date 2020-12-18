@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
          //TODO doesnt work
          return isGameOver
       }, 20)
-      console.log(isGameOver);
+      // console.log(isGameOver);
 
       if (!isGameOver){
          setTimeout(generateObstacles, randomTime);
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
       generateObstacles();
-      console.log(isGameOver);
+      // console.log(isGameOver);
 // TODO restart button
    // get seconds from first game start
    function getScore () {  
