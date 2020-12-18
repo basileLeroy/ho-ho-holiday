@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
             scoreAfterGame.innerHTML = 'score: '+ score;
             
             clearInterval(timerId);
-
          }    
 
          const obstaclePassed = obstaclePosition <= 0;
@@ -103,7 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
          }
          obstaclePosition -= 10  ;
          obstacle.style.left = obstaclePosition + 'px';
-         // TODO return isGameOver
+         //TODO doesnt work
+         return isGameOver
       }, 20)
       console.log(isGameOver);
 
@@ -112,21 +112,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    }
 
-generateObstacles();
-
-
-
+      generateObstacles();
+      console.log(isGameOver);
+// TODO restart button
    // get seconds from first game start
    function getScore () {  
       score += Math.round((new Date() - startTime)/1000);
       currentScore.innerHTML = score;
    }
 // TODO when game over: clear score and log score to array for Highscore
-if (isGameOver) {
+/* if (isGameOver) {
    // TODO push to array for highscore
    highScoreValues.push(score);
    console.log(score)
-}
+}*/
 }) 
 
 
