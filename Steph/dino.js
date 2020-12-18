@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
    let gravity = 0.9;
    let isGameOver = false;
    let score = 0;
-   let highScore = 0;
+   // let highScore = 0;
    let startTime = new Date();
 
-   function control (event) {
+   const control = (event) => {
       if (event.keyCode === 32) {
          //when spacebar is pressed: if isJumping is false, set isJumping to true and let jump happen
          if (!isJumping) {
@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
    // execute control when the spacebar has been pressed
    document.addEventListener("keydown", control);
 
-   function jump () {
+   const jump = () => {
       let count = 0;
-      let timerID = setInterval(function(){
+      let timerID = setInterval(() => {
          // move down
          if (count === 18){
             clearInterval(timerID);
-            let downTimerId = setInterval(function(){
+            let downTimerId = setInterval(() => {
                if (count === 6 ) {
                   clearInterval(downTimerId);
                   isJumping = false;
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             },20); 
          } 
          // move up 
-         console.log('up');
          count ++;
          positionDino += 30;
          positionDino = positionDino * gravity;
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
       
-   function generateObstacles () { 
+   const generateObstacles = () => { 
 
       let obstaclePosition = grid.clientWidth - 50; //length canvas
       // TODO make random blocks not too close to eachother
@@ -71,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       grid.appendChild(obstacle);
       obstacle.style.left = obstaclePosition + 'px';
 
-      let timerId = setInterval(function(){
+      let timerId = setInterval(() => {
          getScore();
 
          const collisionDino = obstaclePosition > 0 && obstaclePosition < 100 && positionDino < 100;
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log(isGameOver);
 // TODO restart button
    // get seconds from first game start
-   function getScore () {  
+   const getScore = () => {  
       score += Math.round((new Date() - startTime)/1000);
       currentScore.innerHTML = score;
    }
