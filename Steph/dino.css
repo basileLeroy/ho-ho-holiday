@@ -2,10 +2,12 @@
   margin: 0;
   padding: 0;
 }
+
 @font-face{
   font-family: game-over;
   src: url(../assets/ka1.ttf);
 }
+
 body{
   overflow: auto;
   background-color:black;
