@@ -46,18 +46,22 @@
     let brickOffsetLeft = 30
     let bricks = [];
 
-setInterval(draw, ballSpeed,);
+// events 
 
-function bricksArray(){
+
+
+//functions
+const bricksArray = () =>{
     for(let c=0; c<brickColumnCount; c++) {
         bricks[c] = [];
         for(let r=0; r<brickRowCount; r++) {
             bricks[c][r] = { x: 0, y: 0, status: 1 };
+            
         }
     }
 }
 
-function drawBall() {
+const drawBall = () => {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
     ctx.fillStyle = randomColor;
@@ -65,7 +69,7 @@ function drawBall() {
     ctx.closePath();
 }
 
-function drawPaddle() {
+const drawPaddle = () => {
     ctx.beginPath();
     ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
     ctx.fillStyle = "white";
@@ -73,7 +77,7 @@ function drawPaddle() {
     ctx.closePath();
 }
 
-function draw() {  
+const draw = () => {  
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall(); 
     drawPaddle(); 
@@ -112,7 +116,6 @@ function draw() {
                 document.querySelector(".startButton").style.display = "inline";
                 document.querySelector(".gameOverBanner").style.display = "inline";
                 document.querySelector(".homeButtonTwo").style.display = "none";
-                 clearInterval(interval); 
         } 
     }
     x += dx;
@@ -129,18 +132,18 @@ function draw() {
         if (paddleX < 0) {
             paddleX = 0;
         }
-    }
+    }return
 }
 
  document.querySelector(".homeButtonTwo").addEventListener("click", 
-    function startBall() {
+    startBall = () => {
     ballSpeed = 25;
     console.log(ballSpeed)
     setInterval(draw, ballSpeed,);
     }
 )
 
-function drawBricks() {
+const drawBricks = () => {
     for(var c=0; c<brickColumnCount; c++) {
         for(var r=0; r<brickRowCount; r++) {
             if(bricks[c][r].status == 1) {
@@ -158,7 +161,7 @@ function drawBricks() {
     }
 }
 
-function keyDownHandler(any) {
+const keyDownHandler = (any) => {
     if(any.key == "Right" || any.key == "ArrowRight" || any.key == "d") {
         rightPressed = true
     }
@@ -167,7 +170,7 @@ function keyDownHandler(any) {
     }
 }
 
-function keyUpHandler(any) {
+const keyUpHandler = (any) => {
     if(any.key == "Right" || any.key == "ArrowRight" || any.key == "d") {
         rightPressed = false;
     }
@@ -175,13 +178,14 @@ function keyUpHandler(any) {
         leftPressed = false;
     }
 }
-function drawScore() {
+
+const drawScore = () => {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Score: "+score, 8, 20);
 }
 
-function collisionDetection() {
+const collisionDetection = () => {
     for(let c=0; c<brickColumnCount; c++) {
         for(let r=0; r<brickRowCount; r++) {
             let b = bricks[c][r];
@@ -211,8 +215,10 @@ function collisionDetection() {
 }
 }
 
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 bricksArray();
 
+setInterval(draw, ballSpeed,);
