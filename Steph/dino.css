@@ -15,7 +15,7 @@ body{
 .game { 
   position: relative;
   /* background-position-y: 10; */
-  background-image: url("../../assets/retro-background.png");
+  background-image: url("../assets/retro-background.png");
   /* background-repeat: no-repeat; */
   background-size: 100vw 700px;
   height:700px;
