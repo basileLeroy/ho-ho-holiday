@@ -62,10 +62,14 @@
     }
 
     .gameOver{
+        display: inline;    
+        position: absolute;
         padding: 50px;
         color: white;
         font-family: 'Press Start 2P', cursive;
-        background-color: rgb(7, 70, 7);
+        background-color: rgb(23, 207, 23);
+        right: 40%;
+      
     }
 
  
