@@ -62,6 +62,7 @@ body .menu .menu-select .games .menu-Button {
   margin-bottom: 10px;
   margin-left: 30px;
   color: white;
+  padding: 10px;
 }
 
 body .menu .menu-select .games .menu-Button #pointer {

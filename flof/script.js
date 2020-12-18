@@ -116,7 +116,7 @@ const draw = () => {
                 document.querySelector(".startButton").style.display = "inline";
                 document.querySelector(".gameOverBanner").style.display = "inline";
                 document.querySelector(".homeButtonTwo").style.display = "none";
-                document.querySelector("#myCanvas").style.opacity="0.00001";
+                document.querySelector("#myCanvas").style.opacity="0.0001";
         } 
     }
     x += dx;
