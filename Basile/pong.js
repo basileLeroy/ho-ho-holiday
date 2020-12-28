@@ -1,5 +1,7 @@
-const RestartGame = document.querySelector('#GameResult');
+const RestartGame = document.querySelector('#GameOver');
+const RestartGame2 = document.querySelector('#GameWon');
 const RestartButton = document.querySelector('.START-BUTTON');
+const RestartButton2 = document.querySelector('.START-BUTTON2');
 const PressStart = document.querySelector('#pressStart');
 
 class Vector {
@@ -165,6 +167,15 @@ class Pong {
                 location.reload();
             })
             console.log("Game Over!");
+        }
+
+        if (this.Players[0].score >= 5 ) {
+            RestartGame2.style.display = "block"
+
+            RestartButton2.addEventListener('click', () => {
+                location.reload();
+            })
+            console.log("You Won!");
         }
     }
 

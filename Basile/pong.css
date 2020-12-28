@@ -52,7 +52,7 @@ body .menu #pressStart h1 {
   padding: 10px 15px;
 }
 
-body .menu #GameResult {
+body .menu #GameOver {
   display: none;
   position: absolute;
   font-family: game-over;
@@ -65,12 +65,12 @@ body .menu #GameResult {
   background-color: black;
 }
 
-body .menu #GameResult h1 {
+body .menu #GameOver h1 {
   color: white;
   padding-top: 20px;
 }
 
-body .menu #GameResult .START-BUTTON {
+body .menu #GameOver .START-BUTTON {
   margin-top: 30px;
   font-family: 'Press Start 2P', cursive;
   font-size: 30px;
@@ -80,7 +80,41 @@ body .menu #GameResult .START-BUTTON {
   border: 1px solid black;
 }
 
-body .menu #GameResult .START-BUTTON:hover {
+body .menu #GameOver .START-BUTTON:hover {
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+
+body .menu #GameWon {
+  display: none;
+  position: absolute;
+  font-family: game-over;
+  top: 50%;
+  left: 40.5%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  background-color: black;
+}
+
+body .menu #GameWon h1 {
+  color: white;
+  padding-top: 20px;
+}
+
+body .menu #GameWon .START-BUTTON2 {
+  margin-top: 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 30px;
+  padding: 10px 15px;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+
+body .menu #GameWon .START-BUTTON2:hover {
   color: white;
   background-color: black;
   border: 1px solid white;

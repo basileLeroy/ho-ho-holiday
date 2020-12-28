@@ -57,7 +57,7 @@ body {
             }
         }
 
-        #GameResult {
+        #GameOver {
             display: none;
             position: absolute;
     
@@ -92,6 +92,47 @@ body {
                 border: 1px solid black;
             }
             .START-BUTTON:hover {
+                color: white;
+                background-color: black;
+                border: 1px solid white;
+            }
+        }
+
+        #GameWon {
+            display: none;
+            position: absolute;
+    
+            font-family: game-over;
+    
+            top: 50%;
+            left: 40.5%;
+            transform: translate(-50%, -50%);
+    
+            width: 300px;
+            height: 150px;
+    
+            background-color: black;
+    
+            h1 {
+                color: white;
+    
+                padding-top: 20px;
+            }
+    
+            .START-BUTTON2 {
+    
+                
+                margin-top: 30px;
+    
+                font-family: 'Press Start 2P', cursive;
+                font-size: 30px;
+                padding: 10px 15px;
+    
+                color: black;
+                background-color: white;
+                border: 1px solid black;
+            }
+            .START-BUTTON2:hover {
                 color: white;
                 background-color: black;
                 border: 1px solid white;
