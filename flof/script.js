@@ -1,5 +1,7 @@
 // TODO: import pause button (alert("your game is now paused") when you push 'p' or 'F3' key )
 // TODO: import colour change on paddle hit (do +1 on array index)
+// TODO: add new levels
+
 
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
@@ -46,17 +48,19 @@
     let brickOffsetLeft = 30
     let bricks = [];
 
-// events 
+    //variable to make sure that pop up only goes once
+    let keepDrawing = false;
 
-
+    // variables to point out what level the player is at  
+    let level = 1;
 
 //functions
+
 const bricksArray = () =>{
     for(let c=0; c<brickColumnCount; c++) {
         bricks[c] = [];
         for(let r=0; r<brickRowCount; r++) {
             bricks[c][r] = { x: 0, y: 0, status: 1 };
-            
         }
     }
 }
@@ -84,9 +88,9 @@ const draw = () => {
     drawBricks(); 
     collisionDetection(); 
     drawScore();
+    nextLevel();
+    
    
-    if (bricks.status == 0)
-    { document.querySelector(".welcomeBanner").style.display = "none"; }
 
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
@@ -136,8 +140,8 @@ const draw = () => {
     }return
 }
 
- document.querySelector(".homeButtonTwo").addEventListener("click", 
-    startBall = () => {
+document.querySelector(".homeButtonTwo").addEventListener("click", 
+    startBall = () => { 
     ballSpeed = 25;
     console.log(ballSpeed)
     setInterval(draw, ballSpeed,);
@@ -145,11 +149,11 @@ const draw = () => {
 )
 
 const drawBricks = () => {
-    for(var c=0; c<brickColumnCount; c++) {
-        for(var r=0; r<brickRowCount; r++) {
+    for(let c=0; c<brickColumnCount; c++) {
+        for(let r=0; r<brickRowCount; r++) {
             if(bricks[c][r].status == 1) {
-                var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-                var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
                 bricks[c][r].x = brickX;
                 bricks[c][r].y = brickY;
                 ctx.beginPath();
@@ -169,6 +173,10 @@ const keyDownHandler = (any) => {
     else if(any.key == "Left" || any.key == "ArrowLeft" || any.key == "a") {
         leftPressed = true;
     }
+    else if (any.key== "p") {
+        alert("Take a break, Bricker.")
+        
+    }
 }
 
 const keyUpHandler = (any) => {
@@ -181,10 +189,25 @@ const keyUpHandler = (any) => {
 }
 
 const drawScore = () => {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: "+score, 8, 20);
+    ctx.font = "12px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Score: "+score, 5, 145);
 }
+
+
+
+        
+const nextLevel = () => {
+if (score == 1 && level == 1) {
+        level++
+        console.log(level)
+            if (level == 2){
+            console.log("en???")
+            
+}
+}
+}
+
 
 const collisionDetection = () => {
     for(let c=0; c<brickColumnCount; c++) {
@@ -196,30 +219,35 @@ const collisionDetection = () => {
                 dy = -dy;
                 b.status = 0;
                 score++; console.log(score)
-                
-                if(score == brickRowCount*brickColumnCount) {
-                    alert("YOU WIN, CONGRATULATIONS!");
-                }
-                //splice?
-
-                //bricks[c][r] = { x: 0, y: 0, status: 0 };
-
-                // for(let c=0; c<brickColumnCount; c++) {
-                //     bricks[c] = [];
-                //     for(let r=0; r<brickRowCount; r++) {
-                //         bricks.splice({ x: 0, y: 0, status: 1 })
-                //     }
-                // }
         }
     }
 }
 }
 }
 
+//insctruction on screen before game starts
+instructions = () => {
+ctx.font = "12px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("press 'play' to start" , 50, 45);
 
+ctx.font = "12px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("press 'p' to pause" , 50, 70);
+
+ctx.font = "12px Arial";
+ctx.fillStyle = "white";
+ctx.fillText("press 'arrow keys' to move paddle" , 50, 95);    
+}
+
+// functions that need to be called before draw
+bricksArray();
+instructions();
+
+//event listeners controls
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-bricksArray();
-
+//interval main function 
 setInterval(draw, ballSpeed,);
+

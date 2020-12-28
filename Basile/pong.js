@@ -68,6 +68,9 @@ class Pong {
             player.position.y = this._canvas.height / 2;
         })
 
+        PressStart.style.left = this._canvas.width / 2;
+        PressStart.style.top = this._canvas.height / 2;
+
         let lastTime;
         const callbackTime = (milliseconds) => {
             if (lastTime) {
@@ -174,8 +177,9 @@ class Pong {
         if (this.ball.velocity.x === 0 && this.ball.velocity.y === 0) {
 
             this.ball.velocity.x = 250 * (Math.random() > .5 ? 1 : -1);
-            this.ball.velocity.y = 150 * (Math.random() * 2 -1);
+            this.ball.velocity.y = 50 * (Math.random() * 2) + 150;
         }
+        console.log(this.ball.velocity.y);
     }
 
     Update = (updateTime) => {
