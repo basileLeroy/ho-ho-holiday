@@ -25,78 +25,85 @@ body {
         min-height: 70vh;
         margin-top: 8%;
         margin-left: 10%;
-    }
 
-    #pongCanvas {
-        margin: 50px 70px; 
-        
-        
-        width: fill;
-        height: auto;
-
-        border: 4px solid white;
-
-        
-    }
-
-    #pressStart {
-        display: block;
-        position: absolute;
-
-        top: 350px;
-        left: 375px;
-
-        width: 550px;
-        height: auto;
-
-        background-color: black;
-
-        h1 {
-            font-size: 25px;
-
-            padding: 10px 15px;
-        }
-    }
-
-    #GameResult {
-        display: none;
-        position: absolute;
-
-        font-family: game-over;
-
-        top: 300px;
-        left: 500px;
-
-        width: 300px;
-        height: 150px;
-
-        background-color: black;
-
-        h1 {
-            color: white;
-
-            padding-top: 20px;
-        }
-
-        .START-BUTTON {
-
+        #pongCanvas {
+            margin: 50px 70px; 
             
-            margin-top: 30px;
-
-            font-family: 'Press Start 2P', cursive;
-            font-size: 30px;
-            padding: 10px 15px;
-
-            color: black;
-            background-color: white;
-            border: 1px solid black;
+            width: fill;
+            height: auto;
+    
+            border: 4px solid white;
         }
-        .START-BUTTON:hover {
-            color: white;
+
+        #pressStart {
+            display: block;
+            position: absolute;
+    
+            margin: 50px 70px;
+
+            top: 45%;
+            left: 36%;
+            transform: translate(-50%, -50%);
+
+            width: 700px;
+            height: 50px;
+    
             background-color: black;
-            border: 1px solid white;
+    
+            h1 {
+                font-size: 25px;
+    
+                padding: 10px 15px;
+            }
+        }
+
+        #GameResult {
+            display: none;
+            position: absolute;
+    
+            font-family: game-over;
+    
+            top: 50%;
+            left: 40.5%;
+            transform: translate(-50%, -50%);
+    
+            width: 300px;
+            height: 150px;
+    
+            background-color: black;
+    
+            h1 {
+                color: white;
+    
+                padding-top: 20px;
+            }
+    
+            .START-BUTTON {
+    
+                
+                margin-top: 30px;
+    
+                font-family: 'Press Start 2P', cursive;
+                font-size: 30px;
+                padding: 10px 15px;
+    
+                color: black;
+                background-color: white;
+                border: 1px solid black;
+            }
+            .START-BUTTON:hover {
+                color: white;
+                background-color: black;
+                border: 1px solid white;
+            }
         }
     }
+
+
+
+
+
+
 
     .buttonContainer {
         width: 100%;
