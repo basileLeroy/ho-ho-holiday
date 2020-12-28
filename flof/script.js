@@ -48,8 +48,11 @@
     let brickOffsetLeft = 30
     let bricks = [];
 
-// events 
+    //variable to make sure that pop up only goes once
+    let keepDrawing = false;
 
+    // variables to point out what level the player is at  
+    let level = 1;
 
 //functions
 
@@ -87,6 +90,7 @@ const draw = () => {
     drawScore();
     nextLevel();
     
+   
 
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
@@ -190,11 +194,20 @@ const drawScore = () => {
     ctx.fillText("Score: "+score, 5, 145);
 }
 
+
+
+        
 const nextLevel = () => {
-     if (score == 45) {
-        alert("You actually did it, you slick basterd")
-    }
+if (score == 1 && level == 1) {
+        level++
+        console.log(level)
+            if (level == 2){
+            console.log("en???")
+            
 }
+}
+}
+
 
 const collisionDetection = () => {
     for(let c=0; c<brickColumnCount; c++) {
@@ -226,10 +239,11 @@ ctx.font = "12px Arial";
 ctx.fillStyle = "white";
 ctx.fillText("press 'arrow keys' to move paddle" , 50, 95);    
 }
+
 // functions that need to be called before draw
 bricksArray();
-
 instructions();
+
 //event listeners controls
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
