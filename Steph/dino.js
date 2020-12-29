@@ -59,9 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
          positionDino += 30;
          positionDino = positionDino * gravity;
          dino.style.bottom = positionDino + 'px';
-      },20)
+      },20);
    }
-
       
    const generateObstacles = () => { 
 
@@ -118,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
          }
          obstaclePosition -= 10  ;
          obstacle.style.left = obstaclePosition + 'px';
-         //TODO doesnt work
+         //TODO doesn't work
          return isGameOver
       }, 20)
       // console.log(isGameOver);
@@ -127,8 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
          setTimeout(generateObstacles, randomTime);
       }
 
-      if (isGameOver = true) {
-         RestartButton.style.display = 'block';
+      if (isGameOver) {
+         RestartButton.style.visibility = 'visible';
 
          RestartButton.addEventListener("click", () =>{
             location.reload();
