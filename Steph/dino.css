@@ -105,7 +105,8 @@ p {
 .pageButton:hover {
   background-color: #3fb143;
 }
-.restart {
+button {
+  display: none;
   position: absolute;
   margin: 200px 260px;
   padding: 6px;
@@ -114,8 +115,9 @@ p {
   background-color: transparent;
   color: white;
   font-size:25px;
+  cursor: pointer;
 }
-.restart:hover {
+button:hover {
   background-color:white;
   color: green;
   scale: 1.5;

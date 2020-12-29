@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
    const currentScore = document.getElementById("currentScore");
    const jumpSound = document.querySelector("#jump-sound");
    const gameOverSound = document.querySelector("#game-over-sound");
+   const RestartButton = document.querySelector('.restart');
    const scoreStorage = window.localStorage;
    // const highScore = document.createElement('div');
 
@@ -91,6 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                // grid.removeChild(grid.firstChild);
                grid.innerHTML = '';
             } 
+
             grid.appendChild(gameOver);
             // TODO set highscore 
             const highscoreAfterGame = document.createElement('p');
@@ -105,8 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
             scoreAfterGame.innerHTML = 'score: '+ score;
             scoreStorage.setItem('highscore', score);
             console.log(scoreStorage);
-
-            restartButton();
 
             clearInterval(timerId);
 
@@ -127,15 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
          setTimeout(generateObstacles, randomTime);
       }
 
-      const restartButton = () => {
-         const restart = document.createElement('a');
-         // restart.onclick = reload();
-         restart.href = 'https://basileleroy.github.io/ho-ho-holiday/Steph/dino.html';
-         restart.classList.add("restart");
-         let restartText = document.createTextNode('restart');
-         restart.appendChild(restartText);
-         grid.appendChild(restart);
+      if (isGameOver = true) {
+         RestartButton.style.display = 'block';
 
+         RestartButton.addEventListener("click", () =>{
+            location.reload();
+         });
       }
       
    }
@@ -151,7 +148,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 })  
-
-document.querySelector('.restart').addEventListener("click", () =>{
-   location.reload();
- });
