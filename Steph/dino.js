@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
    const dino = document.querySelector(".dino");
    const grid = document.querySelector(".grid");
    const gameOver = document.getElementById("gameOver");
-   const scorePlayer = document.querySelector(".scorePlayer");
    const currentScore = document.getElementById("currentScore");
    const jumpSound = document.querySelector("#jump-sound");
    const gameOverSound = document.querySelector("#game-over-sound");
@@ -89,18 +88,28 @@ document.addEventListener("DOMContentLoaded", () => {
             isGameOver = true;
             gameOverSound.play();
             while (grid.firstChild) { 
-               grid.removeChild(grid.lastChild);
+               // grid.removeChild(grid.firstChild);
+               grid.innerHTML = '';
             } 
             grid.appendChild(gameOver);
-            // TODO set score after game
+            // TODO set highscore 
+            const highscoreAfterGame = document.createElement('p');
+            grid.appendChild(highscoreAfterGame);
+            highscoreAfterGame.classList.add("endHighscore");
+            highscoreAfterGame.innerHTML = 'highscore: '+ highscore;
+
+            // set score after game
             const scoreAfterGame = document.createElement('p');
             grid.appendChild(scoreAfterGame);
             scoreAfterGame.classList.add("endScore");
             scoreAfterGame.innerHTML = 'score: '+ score;
+            scoreStorage.setItem('highscore', score);
+            console.log(scoreStorage);
+
+            restartButton();
+
             clearInterval(timerId);
 
-            scoreStorage.setItem('highscore', scoreAfterGame);
-            console.log(scoreStorage);
          }    
 
          const obstaclePassed = obstaclePosition <= 0;
@@ -117,8 +126,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isGameOver){
          setTimeout(generateObstacles, randomTime);
       }
-   }
 
+      const restartButton = () => {
+         const restart = document.createElement('a');
+         // restart.onclick = reload();
+         restart.href = 'https://basileleroy.github.io/ho-ho-holiday/Steph/dino.html';
+         restart.classList.add("restart");
+         let restartText = document.createTextNode('restart');
+         restart.appendChild(restartText);
+         grid.appendChild(restart);
+
+      }
+      
+   }
    generateObstacles();
       // console.log(isGameOver);
 // TODO restart button
@@ -126,8 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
    const getScore = () => {  
       score += Math.round((new Date() - startTime)/1000);
       currentScore.innerHTML = score;
-   }
+    }
 
-}) 
+   //  document.querySelector('.button').addEventListener("click", reload());
+
+})  
 
 
