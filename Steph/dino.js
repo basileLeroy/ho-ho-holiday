@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
    const dino = document.querySelector(".dino");
    const grid = document.querySelector(".grid");
    const gameOver = document.getElementById("gameOver");
-   const scorePlayer = document.querySelector(".scorePlayer");
    const currentScore = document.getElementById("currentScore");
    const jumpSound = document.querySelector("#jump-sound");
    const gameOverSound = document.querySelector("#game-over-sound");
+   const RestartButton = document.querySelector('.restart');
+   const scoreStorage = window.localStorage;
    // const highScore = document.createElement('div');
 
    let isJumping = false;
@@ -15,8 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
    let gravity = 0.9;
    let isGameOver = false;
    let score = 0;
-   // let highScore = 0;
+   let highscore = 0; //TODO display highscore
    let startTime = new Date();
+
+   // highscore from local storage, when there is a highscore
+   if (localStorage.getItem('highscore')) {
+      highscore = localStorage.getItem('highscore');
+    }
 
    const control = (event) => {
       if (event.keyCode === 32) {
@@ -53,14 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
          positionDino += 30;
          positionDino = positionDino * gravity;
          dino.style.bottom = positionDino + 'px';
-      },20)
+      },20);
    }
-
       
    const generateObstacles = () => { 
 
       let obstaclePosition = grid.clientWidth - 50; //length canvas
-      // TODO make random blocks not too close to eachother
+      // TODO make random blocks not too close to eachother (add minimum time and have random on top of this value)
       let randomTime = Math.random()*6000;
       const obstacle = document.createElement('div');
 
@@ -83,16 +88,27 @@ document.addEventListener("DOMContentLoaded", () => {
             isGameOver = true;
             gameOverSound.play();
             while (grid.firstChild) { 
-               grid.removeChild(grid.lastChild);
+               // grid.removeChild(grid.firstChild);
+               grid.innerHTML = '';
             } 
+
             grid.appendChild(gameOver);
-            // TODO set score after game
+            // TODO set highscore 
+            const highscoreAfterGame = document.createElement('p');
+            grid.appendChild(highscoreAfterGame);
+            highscoreAfterGame.classList.add("endHighscore");
+            highscoreAfterGame.innerHTML = 'highscore: '+ highscore;
+
+            // set score after game
             const scoreAfterGame = document.createElement('p');
             grid.appendChild(scoreAfterGame);
             scoreAfterGame.classList.add("endScore");
             scoreAfterGame.innerHTML = 'score: '+ score;
-            
+            scoreStorage.setItem('highscore', score);
+            console.log(scoreStorage);
+
             clearInterval(timerId);
+
          }    
 
          const obstaclePassed = obstaclePosition <= 0;
@@ -101,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
          }
          obstaclePosition -= 10  ;
          obstacle.style.left = obstaclePosition + 'px';
-         //TODO doesnt work
+         //TODO doesn't work
          return isGameOver
       }, 20)
       // console.log(isGameOver);
@@ -109,22 +125,25 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!isGameOver){
          setTimeout(generateObstacles, randomTime);
       }
-   }
 
-      generateObstacles();
+      if (isGameOver) {
+         RestartButton.style.visibility = 'visible';
+
+         RestartButton.addEventListener("click", () =>{
+            location.reload();
+         });
+      }
+      
+   }
+   generateObstacles();
       // console.log(isGameOver);
 // TODO restart button
    // get seconds from first game start
    const getScore = () => {  
       score += Math.round((new Date() - startTime)/1000);
       currentScore.innerHTML = score;
-   }
-// TODO when game over: clear score and log score to array for Highscore
-/* if (isGameOver) {
-   // TODO push to array for highscore
-   highScoreValues.push(score);
-   console.log(score)
-}*/
-}) 
+    }
 
 
+
+})  

@@ -11,27 +11,36 @@
 body{
   overflow: auto;
   background-color:black;
+  margin: auto;
 }
 .game { 
-  position: relative;
-  /* background-position-y: 10; */
-  background-image: url("../assets/retro-background.png");
-  /* background-repeat: no-repeat; */
-  background-size: 100vw 700px;
-  height:700px;
+
+  position: absolute;
+  background: url("../assets/retro-background.png");
+  background-repeat: no-repeat;
+  background-position-x: left;
+  background-position-y: top;
+  /* background-size: 100vw 700px; */
+  background-size: contain;
+  min-width: 1200px;
+  height: 700px;
 } 
 .grid {
+  margin: auto;
   position: relative;
   background-color: green;
   background-image: url("assets/scene.png");
-  background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: top;
+  margin-left: 94px;
+  margin-top: 94px;
   background-size: cover;
   opacity: 1;
-  width: 65vw;
-  height: 534px;
-  top: 90px;
-  left: 132px;
+  width: 704px;
+  height: 531px;
   z-index: -1;
+
 } 
 
 .dino {
@@ -63,7 +72,7 @@ body{
 h2 {
   position: relative;
   text-align: center;
-  top: 100px;
+  top: 190px;
   font-family: game-over;
   font-size: 40px;
   color: white;
@@ -80,9 +89,9 @@ p {
   width: 100%;
   height: auto;
   position: relative;
-  text-align: right;
-  right: 5%;
-  bottom: -70px;
+  text-align: left;
+  left: 910px;
+  top: -70px;
 }
 
 .pageButton {
@@ -96,4 +105,21 @@ p {
 .pageButton:hover {
   background-color: #3fb143;
 }
-/*# sourceMappingURL=dino.css.map */
+button {
+  position: absolute;
+  margin: -250px 340px;
+  padding: 10px;
+  border: 3px solid white;
+  font-family: 'Press Start 2P', cursive;
+  background-color: transparent;
+  color: white;
+  font-size:25px;
+  cursor: pointer;
+  visibility: hidden;
+
+}
+button:hover {
+  background-color:white;
+  color: green;
+  scale: 1.1;
+}
