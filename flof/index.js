@@ -18,7 +18,8 @@
     // that's some paddlin'
     let paddleHeight = 3;
     let paddleWidth = 100;
-    let paddleX = (canvas.width-paddleWidth) / 2;
+   
+    let paddleX = (canvas.width-paddleWidth) / 2 + 20;
     let paddleFloat = 0;
     let paddleY = canvas.height-paddleHeight- paddleFloat;
     let paddleSpeed = 6;
@@ -63,106 +64,6 @@
     let gameOverCriteria = 1;
 
 //functions
-
-const bricksArray = () =>{
-    for(let c=0; c<brickColumnCount; c++) {
-        bricks[c] = [];
-        for(let r=0; r<brickRowCount; r++) {
-            bricks[c][r] = { x: 0, y: 0, status: 1 };
-        }
-    }
-}
-
-const drawBall = () => {
-    requestAnimationFrame(drawBall);
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = randomColor;
-    ctx.fill();
-    ctx.closePath();
-}
-
-const drawBallTwo = () => {
-    gameOverCriteria = 2;
-
-    if (gameOverCriteria = 1){
-        requestAnimationFrame(drawBallTwo);
-    }   
-    
-    ctx.beginPath();
-    ctx.arc(xballtwo, yballtwo, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
-    collisionDetection();
-
-
-
-    if (xballtwo + dxballtwo > canvas.width - ballRadius || xballtwo + dxballtwo < ballRadius) {
-        dxballtwo = -dxballtwo;
-    }
-    if (yballtwo + dy < ballRadius) {
-        dyballtwo = -dyballtwo;
-    }  
-        // gameover $$ bounce on paddle   
-    else if(yballtwo + dyballtwo > canvas.height - ballRadius) { 
-        
-                //if bounce on left side paddle
-        if(xballtwo > paddleX && xballtwo < paddleX + (paddleWidth*0.4)) {
-                dyballtwo = -dyballtwo;
-                dxballtwo = dxballtwo - 1.2
-
-                //if bounce on center of paddle
-        }if (xballtwo > paddleX + (paddleWidth*0.4) && xballtwo < paddleX + (paddleWidth*0.6)){
-                dyballtwo= -dyballtwo;
-                dxballtwo= 0;
-
-                //if bounce on right side paddle
-        }if (xballtwo > paddleX + (paddleWidth*0.6) && xballtwo < paddleX + paddleWidth){
-                dyballtwo = -dyballtwo;
-                dxballtwo = dxballtwo + 1.2
-                 // game over   
-        }if (yballtwo + dyballtwo > canvas.height - ballRadius + paddleHeight){
-                gameOverCriteria-- 
-                if (gameOverCriteria == 0){
-                    gameOver();
-
-
-                }
-        } 
-    }
-    xballtwo += dxballtwo;
-    yballtwo += dyballtwo;
-
-}
-
-gameOver = () => {
-                document.querySelector(".startButton").style.display = "inline";
-                document.querySelector(".gameOverBanner").style.display = "inline";
-                document.querySelector(".homeButtonTwo").style.display = "none";
-                document.querySelector("#myCanvas").style.opacity="0.0001";
-            }
-
-
-const drawPaddle = () => {
-    ctx.beginPath();
-    ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
-    ctx.fillStyle = "white";
-    ctx.fill();
-    ctx.closePath();
-}
-
-const nextLevel = () => {
-        if (score == 1 && level == 1) {
-            level = 2;
-            let next = confirm("You've gotten quitte far, would be a shame if your paddle got smaller......");
-                if (next = true){ 
-                   const paddleWidth = 20 ;
-
-                }
-        } 
-}
-
 const draw = () => {  
     requestAnimationFrame(draw);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -223,14 +124,103 @@ const draw = () => {
 
 }
 
-document.querySelector(".homeButtonTwo").addEventListener("click", 
-    start = () => { 
-window.requestAnimationFrame(draw);
-window.requestAnimationFrame(drawBall);
-window.requestAnimationFrame(drawBallTwo)
+const drawBall = () => {
+    requestAnimationFrame(drawBall);
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = randomColor;
+    ctx.fill();
+    ctx.closePath();
+}
+
+const drawBallTwo = () => {
+   
+    requestAnimationFrame(drawBallTwo);
+    
+    gameOverCriteria = 2;
+
+    ctx.beginPath();
+    ctx.arc(xballtwo, yballtwo, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+    collisionDetection();
+    gameWin();
+
+    if (xballtwo + dxballtwo > canvas.width - ballRadius || xballtwo + dxballtwo < ballRadius) {
+        dxballtwo = -dxballtwo;
+    }
+    if (yballtwo + dy < ballRadius) {
+        dyballtwo = -dyballtwo;
+    }  
+        // gameover $$ bounce on paddle   
+    else if(yballtwo + dyballtwo > canvas.height - ballRadius) { 
+        
+                //if bounce on left side paddle
+        if(xballtwo > paddleX && xballtwo < paddleX + (paddleWidth*0.4)) {
+                dyballtwo = -dyballtwo;
+                dxballtwo = dxballtwo - 1.2
+
+                //if bounce on center of paddle
+        }if (xballtwo > paddleX + (paddleWidth*0.4) && xballtwo < paddleX + (paddleWidth*0.6)){
+                dyballtwo= -dyballtwo;
+                dxballtwo= 0;
+
+                //if bounce on right side paddle
+        }if (xballtwo > paddleX + (paddleWidth*0.6) && xballtwo < paddleX + paddleWidth){
+                dyballtwo = -dyballtwo;
+                dxballtwo = dxballtwo + 1.2
+                 // game over   
+        }if (yballtwo + dyballtwo > canvas.height - ballRadius + paddleHeight){
+                gameOverCriteria-- 
+                if (gameOverCriteria == 0){
+                    gameOver();
+                }
+        } 
 
     }
-)
+    xballtwo += dxballtwo;
+    yballtwo += dyballtwo;
+
+}
+
+const collisionDetection = () => {
+    for(let c=0; c<brickColumnCount; c++) {
+        for(let r=0; r<brickRowCount; r++) {
+            let b = bricks[c][r];
+            // important line - check if bricks != 0, else bricks is just invis but collision  still happens
+            if(bricks[c][r].status > 0){   
+
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                }   if (xballtwo > b.x && xballtwo < b.x+brickWidth && yballtwo > b.y && yballtwo < b.y+brickHeight) {
+                    dyballtwo = -dyballtwo;
+                    b.status = 0;  
+                    score++;
+                }
+        }
+    }
+}
+}
+
+const bricksArray = () =>{
+    for(let c=0; c<brickColumnCount; c++) {
+        bricks[c] = [];
+        for(let r=0; r<brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1 };
+        }
+    }
+}
+
+const drawPaddle = () => {
+    ctx.beginPath();
+    ctx.rect(paddleX, paddleY, paddleWidth, paddleHeight);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+}
 
 const drawBricks = () => {
     for(let c=0; c<brickColumnCount; c++) {
@@ -247,6 +237,33 @@ const drawBricks = () => {
                 ctx.closePath();
             }
         }
+    }
+}
+
+const nextLevel = () => {
+        if (score > 30 && level == 1) {
+            drawChallenge();
+            setTimeout(() => {
+                paddleWidth = 60 ;
+            }, 1000);
+            
+    } 
+}
+
+const gameOver = () => {
+                document.querySelector(".startButton").style.display = "inline";
+                document.querySelector(".gameOverBanner").style.display = "inline";
+                document.querySelector(".homeButtonTwo").style.display = "none";
+                document.querySelector("#myCanvas").style.opacity="0.0001";
+}
+
+const gameWin = () => {
+    if (score == brickRowCount * brickColumnCount){
+        let level = 2
+        if (level == 2) {
+                level = 2;
+                alert("You.. you actually did it.. Not bad for a rookie!");
+        } 
     }
 }
 
@@ -278,28 +295,12 @@ const drawScore = () => {
     ctx.fillText("Score: "+score, 5, 145);
 }
 
-const collisionDetection = () => {
-    for(let c=0; c<brickColumnCount; c++) {
-        for(let r=0; r<brickRowCount; r++) {
-            let b = bricks[c][r];
-            // important line - check if bricks != 0, else bricks is just invis but collision  still happens
-            if(bricks[c][r].status > 0){   
-
-                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-                    dy = -dy;
-                    b.status = 0;
-                    score++;
-                }   if (xballtwo > b.x && xballtwo < b.x+brickWidth && yballtwo > b.y && yballtwo < b.y+brickHeight) {
-                    dyballtwo = -dyballtwo;
-                    b.status = 0;  
-                    score++;
-                }
-        }
-    }
-}
+const drawChallenge = () => {
+    ctx.font = "12px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(" It would be a shame if your paddle got smaller...", 5, 100)
 }
 
-//insctruction on screen before game starts
 instructions = () => {
 ctx.font = "12px Arial";
 ctx.fillStyle = "white";
@@ -313,6 +314,15 @@ ctx.font = "12px Arial";
 ctx.fillStyle = "white";
 ctx.fillText("press 'arrow keys' to move paddle" , 50, 95);    
 }
+
+document.querySelector(".homeButtonTwo").addEventListener("click", 
+    start = () => { 
+window.requestAnimationFrame(draw);
+window.requestAnimationFrame(drawBall);
+window.requestAnimationFrame(drawBallTwo)
+
+    }
+)
 
 // functions that need to be called before draw
 bricksArray();
