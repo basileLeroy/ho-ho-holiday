@@ -18,11 +18,10 @@
         margin-top: 8%;
         margin-left: 10%;
     }
-
   #myCanvas{
         width:61vw;
         min-height: 70vh;
-       
+         
     }
 
     body .buttonContainer {
