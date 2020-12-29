@@ -1,5 +1,7 @@
-const RestartGame = document.querySelector('#GameResult');
+const RestartGame = document.querySelector('#GameOver');
+const RestartGame2 = document.querySelector('#GameWon');
 const RestartButton = document.querySelector('.START-BUTTON');
+const RestartButton2 = document.querySelector('.START-BUTTON2');
 const PressStart = document.querySelector('#pressStart');
 
 class Vector {
@@ -67,9 +69,6 @@ class Pong {
         this.Players.forEach(player => {
             player.position.y = this._canvas.height / 2;
         })
-
-        PressStart.style.left = this._canvas.width / 2;
-        PressStart.style.top = this._canvas.height / 2;
 
         let lastTime;
         const callbackTime = (milliseconds) => {
@@ -169,6 +168,15 @@ class Pong {
             })
             console.log("Game Over!");
         }
+
+        if (this.Players[0].score >= 5 ) {
+            RestartGame2.style.display = "block"
+
+            RestartButton2.addEventListener('click', () => {
+                location.reload();
+            })
+            console.log("You Won!");
+        }
     }
 
     StartBall = () => {
@@ -178,13 +186,18 @@ class Pong {
 
             this.ball.velocity.x = 250 * (Math.random() > .5 ? 1 : -1);
             this.ball.velocity.y = 50 * (Math.random() * 2) + 150;
+            
+            this.Players[1].position.y = this.ball.position.y;
         }
         console.log(this.ball.velocity.y);
     }
 
     Update = (updateTime) => {
+        
         this.ball.position.x += this.ball.velocity.x * updateTime;
         this.ball.position.y += this.ball.velocity.y * updateTime;
+        
+        this.Players[1].position.y += this.ball.velocity.y * updateTime / (Math.floor(Math.random() * 3) + 1);
     
         // when the position of the ball goes over the x value of 0, the movement will go negative. idem dito with the Y-axis
         if (this.ball.left < 0 || this.ball.right > this._canvas.width) {
@@ -195,14 +208,18 @@ class Pong {
             // Calling the reset if the ball touches the left or right side
             this.Reset(); 
         }
-        
 
         if (this.ball.top < 0 || this.ball.bottom > this._canvas.height) {
             this.ball.velocity.y = -this.ball.velocity.y;
         }
 
+        // AI moving speed: up and down
+        if (this.Players[1].position.y < 0 || this.Players[1].position.y > this._canvas.height) {
+            this.Players[1].position.y = this.Players[1].position.y * 1.5;
+        }
+        // console.log(this.Players[1].position.y)
+
         // Making the AI follow the ball (y-axis):
-        this.Players[1].position.y = this.ball.position.y;
 
         this.Players.forEach(player => this.collide(player, this.ball));
 
