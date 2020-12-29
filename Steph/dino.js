@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
    const grid = document.querySelector(".grid");
    const gameOver = document.getElementById("gameOver");
    const currentScore = document.getElementById("currentScore");
+   const highscoreHTML = document.getElementById("highscore");
    const jumpSound = document.querySelector("#jump-sound");
    const gameOverSound = document.querySelector("#game-over-sound");
    const RestartButton = document.querySelector('.restart');
@@ -16,13 +17,16 @@ document.addEventListener("DOMContentLoaded", () => {
    let gravity = 0.9;
    let isGameOver = false;
    let score = 0;
-   let highscore = 0; //TODO display highscore
+   let highscore; //TODO display highscore
    let startTime = new Date();
 
    // highscore from local storage, when there is a highscore
    if (localStorage.getItem('highscore')) {
       highscore = localStorage.getItem('highscore');
+    } else {
+       highscore = 0;
     }
+    highscoreHTML.innerHTML = highscore;
 
    const control = (event) => {
       if (event.keyCode === 32) {
@@ -93,6 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
             } 
 
             grid.appendChild(gameOver);
+
+            if (score > highscore) {
+               scoreStorage.setItem('highscore', score);
+            }
             // TODO set highscore 
             const highscoreAfterGame = document.createElement('p');
             grid.appendChild(highscoreAfterGame);
@@ -104,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.appendChild(scoreAfterGame);
             scoreAfterGame.classList.add("endScore");
             scoreAfterGame.innerHTML = 'score: '+ score;
-            scoreStorage.setItem('highscore', score);
+
             console.log(scoreStorage);
 
             clearInterval(timerId);
@@ -147,3 +155,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 })  
+console.log(localStorage)
