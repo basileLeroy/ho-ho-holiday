@@ -148,8 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
       currentScore.innerHTML = score;
     }
 
-   //  document.querySelector('.button').addEventListener("click", reload());
+
 
 })  
 
-
+document.querySelector('.restart').addEventListener("click", () =>{
+   location.reload();
+ });
