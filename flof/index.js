@@ -1,18 +1,23 @@
-// TODO: import pause button (alert("your game is now paused") when you push 'p' or 'F3' key )
-// TODO: import colour change on paddle hit (do +1 on array index)
+
 // TODO: add new levels
 
+// export {draw};
+// export {drawPaddle};
+// export {drawBricks};
+// export {collisionDetection};
+// export {drawScore};
+// export {nextLevel};
 
     let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
 
     // ball variables
     let ballRadius = 3;
-    let ballSpeed = 1000 * 60 * 60 * 100;
+    
 
     // that's some paddlin'
     let paddleHeight = 3;
-    let paddleWidth = 75;
+    let paddleWidth = 100;
     let paddleX = (canvas.width-paddleWidth) / 2;
     let paddleFloat = 0;
     let paddleY = canvas.height-paddleHeight- paddleFloat;
@@ -21,10 +26,14 @@
     // ball start position; x & y are coordinates in general
     let x = canvas.width/2;
     let y = canvas.height-25;
+    let xballtwo = canvas.width/2;
+    let yballtwo = canvas.height-25;
 
     //directions
     let dx = 2;
     let dy = 2;
+    let dxballtwo = 2;
+    let dyballtwo = 2;
 
     // key events
     let rightPressed = false;
@@ -48,11 +57,10 @@
     let brickOffsetLeft = 30
     let bricks = [];
 
-    //variable to make sure that pop up only goes once
-    let keepDrawing = false;
 
     // variables to point out what level the player is at  
     let level = 1;
+    let gameOverCriteria = 1;
 
 //functions
 
@@ -66,12 +74,75 @@ const bricksArray = () =>{
 }
 
 const drawBall = () => {
+    requestAnimationFrame(drawBall);
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
     ctx.fillStyle = randomColor;
     ctx.fill();
     ctx.closePath();
 }
+
+const drawBallTwo = () => {
+    gameOverCriteria = 2;
+
+    if (gameOverCriteria = 1){
+        requestAnimationFrame(drawBallTwo);
+    }   
+    
+    ctx.beginPath();
+    ctx.arc(xballtwo, yballtwo, ballRadius, 0, Math.PI*2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+    collisionDetection();
+
+
+
+    if (xballtwo + dxballtwo > canvas.width - ballRadius || xballtwo + dxballtwo < ballRadius) {
+        dxballtwo = -dxballtwo;
+    }
+    if (yballtwo + dy < ballRadius) {
+        dyballtwo = -dyballtwo;
+    }  
+        // gameover $$ bounce on paddle   
+    else if(yballtwo + dyballtwo > canvas.height - ballRadius) { 
+        
+                //if bounce on left side paddle
+        if(xballtwo > paddleX && xballtwo < paddleX + (paddleWidth*0.4)) {
+                dyballtwo = -dyballtwo;
+                dxballtwo = dxballtwo - 1.2
+
+                //if bounce on center of paddle
+        }if (xballtwo > paddleX + (paddleWidth*0.4) && xballtwo < paddleX + (paddleWidth*0.6)){
+                dyballtwo= -dyballtwo;
+                dxballtwo= 0;
+
+                //if bounce on right side paddle
+        }if (xballtwo > paddleX + (paddleWidth*0.6) && xballtwo < paddleX + paddleWidth){
+                dyballtwo = -dyballtwo;
+                dxballtwo = dxballtwo + 1.2
+                 // game over   
+        }if (yballtwo + dyballtwo > canvas.height - ballRadius + paddleHeight){
+                gameOverCriteria-- 
+                if (gameOverCriteria == 0){
+                    gameOver();
+
+
+                }
+        } 
+    }
+    xballtwo += dxballtwo;
+    yballtwo += dyballtwo;
+
+}
+
+gameOver = () => {
+                document.querySelector(".startButton").style.display = "inline";
+                document.querySelector(".gameOverBanner").style.display = "inline";
+                document.querySelector(".homeButtonTwo").style.display = "none";
+                document.querySelector("#myCanvas").style.opacity="0.0001";
+            }
+
 
 const drawPaddle = () => {
     ctx.beginPath();
@@ -81,17 +152,27 @@ const drawPaddle = () => {
     ctx.closePath();
 }
 
+const nextLevel = () => {
+        if (score == 1 && level == 1) {
+            level = 2;
+            let next = confirm("You've gotten quitte far, would be a shame if your paddle got smaller......");
+                if (next = true){ 
+                   const paddleWidth = 20 ;
+
+                }
+        } 
+}
+
 const draw = () => {  
+    requestAnimationFrame(draw);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall(); 
+     
     drawPaddle(); 
     drawBricks(); 
     collisionDetection(); 
     drawScore();
     nextLevel();
-    
    
-
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
@@ -104,7 +185,7 @@ const draw = () => {
                 //if bounce on left side paddle
         if(x > paddleX && x < paddleX + (paddleWidth*0.4)) {
                 dy = -dy;
-                dx = dx - 1.5
+                dx = dx - 1.2
 
                 //if bounce on center of paddle
         }if (x > paddleX + (paddleWidth*0.4) && x < paddleX + (paddleWidth*0.6)){
@@ -114,19 +195,19 @@ const draw = () => {
                 //if bounce on right side paddle
         }if (x >paddleX + (paddleWidth*0.6) && x < paddleX + paddleWidth){
                 dy = -dy;
-                dx = dx + 1.5
+                dx = dx + 1.2
                  // game over   
         }if (y + dy > canvas.height - ballRadius + paddleHeight){
-                document.querySelector(".startButton").style.display = "inline";
-                document.querySelector(".gameOverBanner").style.display = "inline";
-                document.querySelector(".homeButtonTwo").style.display = "none";
-                document.querySelector("#myCanvas").style.opacity="0.0001";
+            gameOverCriteria-- 
+                if (gameOverCriteria == 0){
+                    gameOver();
+                }
         } 
     }
     x += dx;
     y += dy;
 
-    //paddle inprenetratable borders
+    //paddle movement
     if(rightPressed) {
         paddleX += paddleSpeed;
         if (paddleX + paddleWidth > canvas.width){
@@ -137,14 +218,17 @@ const draw = () => {
         if (paddleX < 0) {
             paddleX = 0;
         }
-    }return
+    }
+    
+
 }
 
 document.querySelector(".homeButtonTwo").addEventListener("click", 
-    startBall = () => { 
-    ballSpeed = 25;
-    console.log(ballSpeed)
-    setInterval(draw, ballSpeed,);
+    start = () => { 
+window.requestAnimationFrame(draw);
+window.requestAnimationFrame(drawBall);
+window.requestAnimationFrame(drawBallTwo)
+
     }
 )
 
@@ -194,34 +278,24 @@ const drawScore = () => {
     ctx.fillText("Score: "+score, 5, 145);
 }
 
-
-
-        
-const nextLevel = () => {
-if (score == 1 && level == 1) {
-        level++
-        console.log(level)
-            if (level == 2){
-            console.log("en???")
-            
-}
-}
-}
-
-
 const collisionDetection = () => {
     for(let c=0; c<brickColumnCount; c++) {
         for(let r=0; r<brickRowCount; r++) {
             let b = bricks[c][r];
             // important line - check if bricks != 0, else bricks is just invis but collision  still happens
             if(bricks[c][r].status > 0){   
-            if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-                dy = -dy;
-                b.status = 0;
-                score++; console.log(score)
+
+                if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                }   if (xballtwo > b.x && xballtwo < b.x+brickWidth && yballtwo > b.y && yballtwo < b.y+brickHeight) {
+                    dyballtwo = -dyballtwo;
+                    b.status = 0;  
+                    score++;
+                }
         }
     }
-}
 }
 }
 
@@ -248,6 +322,6 @@ instructions();
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-//interval main function 
-setInterval(draw, ballSpeed,);
-
+//const reset = () => {
+//    location.reload();
+//}
